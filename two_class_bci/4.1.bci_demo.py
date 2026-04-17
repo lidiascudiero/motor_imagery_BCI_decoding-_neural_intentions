@@ -3,10 +3,12 @@ import mne
 import numpy as np
 import time
 import os
-from mne.decoding import CSP # 
+from mne.decoding import CSP 
 
-# Configuration
-CLEAN_DATA_DIR = os.path.join('.', 'cleaned_data')
+# --- 0. DYNAMIC PATH CONFIGURATION ---
+# This ensures the script finds the data folder relative to its own location
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CLEAN_DATA_DIR = os.path.join(BASE_DIR, 'cleaned_data')
 FILE_NAME = 'A07T_clean-raw.fif' 
 
 st.set_page_config(page_title="BCI 2-Class Simulation", layout="centered")
@@ -15,13 +17,17 @@ st.set_page_config(page_title="BCI 2-Class Simulation", layout="centered")
 def load_simulation_data():
     """Loads Subject 07 data as processed in Notebook 04."""
     file_path = os.path.join(CLEAN_DATA_DIR, FILE_NAME)
+    
+    # Debug check for Streamlit Cloud logs
     if not os.path.exists(file_path):
+        st.error(f"File NOT found at: {file_path}")
         return None
     
     raw = mne.io.read_raw_fif(file_path, preload=True, verbose=False)
     raw.pick(['eeg'])
     events, _ = mne.events_from_annotations(raw, verbose=False)
     
+    # Event IDs for Left (1) and Right (2) hand motor imagery
     epochs = mne.Epochs(raw, events, event_id={'left': 1, 'right': 2}, 
                         tmin=0.5, tmax=3.5, baseline=None, preload=True, verbose=False)
     return epochs
@@ -34,22 +40,18 @@ mental commands by targeting the lateralization of **Mu/Beta rhythms** in the mo
 
 epochs = load_simulation_data()
 
-if epochs is None:
-    st.error(f"File not found: {FILE_NAME}. Please check your 'cleaned_data' folder.")
-else:
-  
-    st.subheader(" Neural Spatial Patterns (CSP)")
+if epochs is not None:
+    st.subheader("Neural Spatial Patterns (CSP)")
     st.write("These topographic maps represent the spatial filters learned by the model to isolate Motor Imagery signals.")
     
     with st.spinner("Generating CSP maps..."):
-        # Calcoliamo il CSP al volo per la visualizzazione
+        # Calculate CSP on the fly for visualization
         csp = CSP(n_components=4, reg=None, log=True, norm_trace=False)
         csp.fit(epochs.get_data(), epochs.events[:, -1])
         
-        # Creiamo il plot (prendiamo le prime 4 mappe)
+        # Create plot for the first 4 patterns
         fig = csp.plot_patterns(epochs.info, ch_type='eeg', show=False, size=1.2)
-        st.pyplot(fig) # Lo sbatte sulla dashboard
-   
+        st.pyplot(fig) 
 
     st.sidebar.success(f"Dataset loaded: {len(epochs)} trials available.")
     
@@ -81,6 +83,7 @@ else:
             
             metric_target.metric("Expected Command", true_label)
             
+            # Simulated confidence for UI feedback purposes
             conf_val = np.random.uniform(70, 78) 
             metric_conf.metric("Model Confidence", f"{conf_val:.1f}%")
 
