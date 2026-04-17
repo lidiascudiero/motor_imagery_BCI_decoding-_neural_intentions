@@ -1,9 +1,0 @@
-mne
-numpy
-pandas
-matplotlib
-plotly
-scikit-learn
-
-
-                                                             
