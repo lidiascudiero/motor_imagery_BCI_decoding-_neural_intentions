@@ -11,19 +11,11 @@ Decoding neural signals is a challenge of **Signal-to-Noise Ratio (SNR)**. EEG d
 - **Experimental Feature:** Deep Learning (EEGNet/Gaussian variations) for non-linear feature extraction.
 
 ---
-### Author's Note: The Neuro-Data Perspective
 
-As a Neuroscientist transitioned into Data Science, my approach to BCI is built on the synergy between **physiological integrity** and **algorithmic precision**. 
+## The "Neuro-Data" Angle 
+> **Author's Note:** Leveraging my background in **Cognitive Neuroscience**, I approached this EEG dataset not just as a stochastic time series, but as a window into neural dynamics. My expertise in biological signals allows me to bridge the gap between physiological integrity and algorithmic precision. In this project, I focused on how specific neural signatures—such as **Mu/Beta desynchronization (ERD)**—translate into actionable digital commands, ensuring that the model’s "attention" remains neurobiologically grounded over the motor cortex rather than fitting to stochastic noise.
 
-In this project, I treat EEG data not merely as a stochastic time series, but as a window into neural dynamics. My domain expertise guided critical decisions where Neuroscience and Data Science meet:
-
-* **The "Why" behind Filtering:** I didn't just band-pass for noise; I targeted the **8-30 Hz range** specifically to preserve the **Mu and Beta desynchronization (ERD)**, which is the gold standard for motor imagery.
-* **ICA with Intent:** Instead of automated cleaning, I focused on identifying and isolating EOG/EMG components to ensure the model learns from **cortical sources**, not muscular artifacts.
-* **Beyond the Black Box:** By visualizing CSP Topomaps, I validated that the model’s "attention" was physically located over the **C3 and C4 motor strips**, ensuring that the classification is neurobiologically grounded.
-
-**I view Data Science as the bridge that translates neural complexity into actionable, real-world interactions.**
 ---
-
 ##  The Pipeline: From Brain to Command
 
 ### 1. Advanced Signal Cleaning (The "Neuro" Edge)
