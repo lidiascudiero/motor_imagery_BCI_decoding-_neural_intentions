@@ -71,7 +71,7 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
 
 ---
 
-> **Note:** Both demos utilize pre-processed `.fif` files (Subject A07T) to ensure optimal performance and allow for a focus on the real-time decoding logic and UI feedback.
+> **Note:** Both demos utilize pre-processed `.fif` files (Subject A07T) to ensure optimal performance and allow for a focus on the real-time decoding logic and UI feedback. For architectural clarity, the repository is organized into independent directories, each containing its own specific preprocessing pipeline (8-30 Hz for Binary vs. 1-40 Hz for Multi-Class) and dedicated environment requirements.
 
 ##  Tech Stack
 
