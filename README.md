@@ -39,7 +39,7 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 ## 4. Interactive Live Demo
 Experience the BCI decoding pipeline in real-time through the dedicated Streamlit application. This dashboard allows you to simulate a BCI session and visualize how neural signals are transformed into motor commands.
 
- [**Access the Live BCI Dashboard**]([https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/](https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/))
+ [**Access the Live BCI Dashboard**]([https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/])
 
 ### What you can explore:
 * **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs from the BCI Competition IV-2a dataset.
