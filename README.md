@@ -52,7 +52,7 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
 ###  Binary Decoding (2-Class Simulation)
 *Focus: Traditional CSP + LDA pipeline for Left vs. Right hand imagery.*
 
- [**Access Binary BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/)
+ [**Access Binary BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-cthqwdblnysiclnn3qkyv.streamlit.app/)
 
 * **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs window-by-window.
 * **Spatial Feature Visualization:** View the **CSP Topomaps** to verify the model is correctly targeting the motor cortex (C3/C4).
