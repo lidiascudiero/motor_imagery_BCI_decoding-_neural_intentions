@@ -59,9 +59,6 @@ Experience the BCI decoding pipeline in real-time through the dedicated Streamli
 
 > **Note:** The demo utilizes pre-processed `.fif` files from the `cleaned_data` folder to ensure optimal performance and focus on the decoding logic.
 
-> **Note:** The demo utilizes pre-processed `.fif` files from the `cleaned_data` folder to ensure optimal performance and focus on the decoding logic.ignal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) and artifact rejection on the raw neural signal.
-
-> **Note:** The demo utilizes pre-processed `.fif` files from the `cleaned_data` folder to ensure optimal performance and focus on the decoding logic.
 ##  Tech Stack
 * **Language:** Python
 * **Neuro-Signal Processing:** `MNE-Python`
