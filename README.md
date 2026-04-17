@@ -37,15 +37,18 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 9.  **`7.bci_demo.py`**: Refined standalone demo script for system-level testing.
 
 ## 4. Interactive Live Demo
-Experience the BCI decoding pipeline in real-time through the dedicated Streamlit application. This dashboard allows you to simulate a BCI session and visualize how neural signals are transformed into motor commands.
 
- [**Access the Live BCI Dashboard**]([https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/])
+Experience the BCI decoding pipeline in real-time through the dedicated Streamlit application. This dashboard allows you to simulate a BCI session and visualize how neural signals are transformed into motor commands.https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/
+
+ [**Access the Live BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/)
 
 ### What you can explore:
 * **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs from the BCI Competition IV-2a dataset.
 * **Spatial Feature Visualization:** View the **CSP Topomaps** generated for each subject to verify that the model is correctly targeting the motor cortex (C3/C4).
 * **Performance Analytics:** Monitor classification confidence and accuracy during the simulated "online" session.
 * **Signal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) and artifact rejection on the raw neural signal.
+
+> **Note:** The demo utilizes pre-processed `.fif` files from the `cleaned_data` folder to ensure optimal performance and focus on the decoding logic.ignal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) and artifact rejection on the raw neural signal.
 
 > **Note:** The demo utilizes pre-processed `.fif` files from the `cleaned_data` folder to ensure optimal performance and focus on the decoding logic.
 ##  Tech Stack
