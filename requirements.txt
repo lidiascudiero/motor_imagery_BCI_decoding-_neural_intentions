@@ -1,13 +1,8 @@
-# Neural Processing and Data Handling
 mne
 numpy
 pandas
-
-# Visualizations
 matplotlib
 plotly
-
-# Machine Learning (for 2-class demo)
 scikit-learn
 
 
