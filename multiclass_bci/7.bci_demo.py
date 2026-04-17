@@ -1,7 +1,8 @@
-""""The streamer is designed with a sample-limit exit condition. T
-his ensures that the simulation mimics a standard clinical recording session, preventing unnecessary 
-CPU overhead once the subject's dataset is fully processed."""
-
+"""
+The streamer is designed with a sample-limit exit condition. 
+This ensures that the simulation mimics a standard clinical recording session, 
+preventing unnecessary CPU overhead once the subject's dataset is fully processed.
+"""
 
 import streamlit as st
 import numpy as np
@@ -13,21 +14,31 @@ import mne
 import time
 import os
 
-# --- Configuration ---
-MODEL_PATH = 'final_eegnet_bci_model.keras'
+# --- 0. DYNAMIC PATH CONFIGURATION ---
+# This ensures the script finds files inside the 'multiclass_bci' folder
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, 'final_eegnet_bci_model.keras')
+CLEAN_DATA_DIR = os.path.join(BASE_DIR, 'cleaned_data_1_40')
+
+# Constants
 CHANNELS = 22
 WINDOW_SIZE = 751
 SFREQ = 250.0
 CLASS_NAMES = ['Left Hand', 'Right Hand', 'Foot', 'Tongue']
-CLEAN_DATA_DIR = os.path.join('.', 'cleaned_data_1_40')
 
-st.set_page_config(page_title="BCI Real-Time Decoder", layout="wide")
+st.set_page_config(page_title="BCI 4-Class Real-Time Decoder", layout="wide")
 
 # --- 1. SMART STREAMER LOGIC ---
 def start_smart_streamer(subject_id='A07T'):
     """Simulates an EEG headset with an automatic stop when data is exhausted."""
     def streamer_loop():
+        # Correctly locate the .fif file
         file_path = os.path.join(CLEAN_DATA_DIR, f'{subject_id}_clean-raw_1_40.fif')
+        
+        if not os.path.exists(file_path):
+            print(f"[ERROR] File not found: {file_path}")
+            return
+
         raw = mne.io.read_raw_fif(file_path, preload=True, verbose=False)
         raw.pick(['eeg'])
         data = raw.get_data()
@@ -35,9 +46,9 @@ def start_smart_streamer(subject_id='A07T'):
         info = StreamInfo('MockEEG', 'EEG', CHANNELS, SFREQ, 'float32', 'bci_uid_001')
         outlet = StreamOutlet(info)
         
-        # The 'sample-limit exit condition' mentioned in your comment
+        print(f"[STREAMER] Starting stream for {subject_id}...")
+        
         for sample_idx in range(data.shape[1]):
-            # Check if thread should be interrupted
             if not getattr(threading.current_thread(), "do_run", True):
                 break
                 
@@ -54,29 +65,30 @@ def start_smart_streamer(subject_id='A07T'):
 
 @st.cache_resource
 def load_bci_model():
-    """Loads the pre-trained EEGNet model once."""
+    """Loads the pre-trained EEGNet model."""
+    if not os.path.exists(MODEL_PATH):
+        st.error(f"Model file not found at {MODEL_PATH}")
+        return None
     return tf.keras.models.load_model(MODEL_PATH)
 
 # --- 2. MAIN STREAMLIT APP ---
 def run_streamlit_bci():
-    st.title("Real-Time Motor Imagery Decoding")
+    st.title("🧠 4-Class Motor Imagery Decoding")
     st.markdown("""
-    This dashboard visualizes neural predictions from an **EEGNet** model (Accuracy: 63.4%). 
-    It connects to a simulated LSL stream and processes data in 3-second windows.
+    This dashboard visualizes neural predictions from an **EEGNet** model. 
+    It targets the lateralization of Mu/Beta rhythms to decode intentions: 
+    *Left Hand, Right Hand, Feet, and Tongue.*
     """)
 
-    # Sidebar for Status
     st.sidebar.header("System Status")
     status_placeholder = st.sidebar.empty()
     
-    # Start the streamer automatically if not already running
     if 'streamer_active' not in st.session_state:
         st.session_state.streamer_thread = start_smart_streamer('A07T')
         st.session_state.streamer_active = True
-        status_placeholder.info("Starting Smart Streamer...")
-        time.sleep(2) # Give LSL time to initialize
+        status_placeholder.info("Initializing LSL Stream...")
+        time.sleep(2) 
 
-    # Main UI Components
     col1, col2 = st.columns([1, 2])
     
     with col1:
@@ -88,8 +100,9 @@ def run_streamlit_bci():
         st.subheader("Class Probabilities")
         chart_placeholder = st.empty()
 
-    # Model and LSL Setup
     model = load_bci_model()
+    if model is None: return
+
     streams = resolve_byprop('name', 'MockEEG', timeout=5)
     
     if not streams:
@@ -101,43 +114,43 @@ def run_streamlit_bci():
     
     buffer = np.zeros((CHANNELS, WINDOW_SIZE))
     
-    # Real-time Loop
     try:
         while True:
-            # pull_sample with timeout to detect when the smart streamer stops
             sample, timestamp = inlet.pull_sample(timeout=2.0)
             
             if sample is None:
-                status_placeholder.error("Session Finished: Stream Closed.")
+                status_placeholder.warning("Stream closed: Data session finished.")
                 break
 
             buffer = np.roll(buffer, -1, axis=1)
             buffer[:, -1] = sample
 
-            # Inference every 0.5 seconds (125 samples at 250Hz)
+            # Inference every 0.5 seconds
             if int(timestamp * SFREQ) % 125 == 0:
-                # Pre-processing: Z-score standardization per trial
+                # Signal Normalization
                 inp = (buffer - np.mean(buffer, axis=-1, keepdims=True)) / np.std(buffer, axis=-1, keepdims=True)
                 inp = inp.reshape(1, CHANNELS, WINDOW_SIZE, 1)
                 
-                # Model Prediction
                 probs = model.predict(inp, verbose=0)[0]
                 pred_idx = np.argmax(probs)
                 confidence = probs[pred_idx]
 
-                # Update Charts
+                # Update Bar Chart
                 chart_data = pd.DataFrame({'Class': CLASS_NAMES, 'Probability': probs})
                 chart_placeholder.bar_chart(chart_data, x='Class', y='Probability', color="#0072B2")
 
-                # Update Prediction Display with 60% threshold
+                # UI Feedback
                 if confidence > 0.60:
-                    prediction_text.header(f"ACTION: {CLASS_NAMES[pred_idx]}")
+                    icons = {"Left Hand": "⬅️", "Right Hand": "➡️", "Foot": "🦶", "Tongue": "👅"}
+                    label = CLASS_NAMES[pred_idx]
+                    prediction_text.header(f"ACTION: {icons.get(label, '')} {label}")
                     confidence_metric.metric("Confidence", f"{confidence:.1%}")
                 else:
-                    prediction_text.header("ACTION: Neutral")
+                    prediction_text.header("ACTION: ⚪ Neutral")
                     confidence_metric.metric("Confidence", f"{confidence:.1%}", delta_color="off")
+
     except Exception as e:
-        st.error(f"Error during decoding: {e}")
+        st.error(f"Runtime Error: {e}")
 
 if __name__ == "__main__":
     run_streamlit_bci()
