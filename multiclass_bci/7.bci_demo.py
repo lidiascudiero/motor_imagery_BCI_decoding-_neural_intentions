@@ -7,15 +7,19 @@ preventing unnecessary CPU overhead once the subject's dataset is fully processe
 import streamlit as st
 import numpy as np
 import tensorflow as tf
-from pylsl import StreamInlet, resolve_byprop, StreamInfo, StreamOutlet
 import pandas as pd
 import threading
 import mne
 import time
 import os
+from pylsl import StreamInlet, resolve_byprop, StreamInfo, StreamOutlet
+
+# --- MEMORY and CPU OPTIMIZATION ---
+# Restrict TensorFlow to a single thread to prevent CPU/RAM spikes on Streamlit Cloud
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
 
 # --- 0. DYNAMIC PATH CONFIGURATION ---
-# This ensures the script finds files inside the 'multiclass_bci' folder
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, 'final_eegnet_bci_model.keras')
 CLEAN_DATA_DIR = os.path.join(BASE_DIR, 'cleaned_data_1_40')
@@ -28,20 +32,22 @@ CLASS_NAMES = ['Left Hand', 'Right Hand', 'Foot', 'Tongue']
 
 st.set_page_config(page_title="BCI 4-Class Real-Time Decoder", layout="wide")
 
-# --- 1. SMART STREAMER LOGIC ---
+# --- 1. SMART STREAMER LOGIC (MEMORY OPTIMIZED) ---
 def start_smart_streamer(subject_id='A07T'):
-    """Simulates an EEG headset with an automatic stop when data is exhausted."""
+    """Simulates an EEG headset by streaming data through LSL."""
     def streamer_loop():
-        # Correctly locate the .fif file
         file_path = os.path.join(CLEAN_DATA_DIR, f'{subject_id}_clean-raw_1_40.fif')
         
         if not os.path.exists(file_path):
             print(f"[ERROR] File not found: {file_path}")
             return
 
-        raw = mne.io.read_raw_fif(file_path, preload=True, verbose=False)
+        # Optimization: preload=False keeps the file on disk until needed
+        raw = mne.io.read_raw_fif(file_path, preload=False, verbose=False)
+        
+        # Optimization: pick only EEG channels before converting to numpy
         raw.pick(['eeg'])
-        data = raw.get_data()
+        data = raw.get_data() 
         
         info = StreamInfo('MockEEG', 'EEG', CHANNELS, SFREQ, 'float32', 'bci_uid_001')
         outlet = StreamOutlet(info)
@@ -65,11 +71,12 @@ def start_smart_streamer(subject_id='A07T'):
 
 @st.cache_resource
 def load_bci_model():
-    """Loads the pre-trained EEGNet model."""
+    """Loads the pre-trained EEGNet model with memory caching."""
     if not os.path.exists(MODEL_PATH):
         st.error(f"Model file not found at {MODEL_PATH}")
         return None
-    return tf.keras.models.load_model(MODEL_PATH)
+    # Compile=False saves memory/time as we only need inference
+    return tf.keras.models.load_model(MODEL_PATH, compile=False)
 
 # --- 2. MAIN STREAMLIT APP ---
 def run_streamlit_bci():
@@ -83,6 +90,7 @@ def run_streamlit_bci():
     st.sidebar.header("System Status")
     status_placeholder = st.sidebar.empty()
     
+    # Auto-start streamer
     if 'streamer_active' not in st.session_state:
         st.session_state.streamer_thread = start_smart_streamer('A07T')
         st.session_state.streamer_active = True
@@ -103,6 +111,7 @@ def run_streamlit_bci():
     model = load_bci_model()
     if model is None: return
 
+    # Resolve LSL stream
     streams = resolve_byprop('name', 'MockEEG', timeout=5)
     
     if not streams:
@@ -116,6 +125,7 @@ def run_streamlit_bci():
     
     try:
         while True:
+            # pull_sample with timeout to avoid freezing if streamer stops
             sample, timestamp = inlet.pull_sample(timeout=2.0)
             
             if sample is None:
@@ -125,21 +135,21 @@ def run_streamlit_bci():
             buffer = np.roll(buffer, -1, axis=1)
             buffer[:, -1] = sample
 
-            # Inference every 0.5 seconds
+            # Inference every 0.5 seconds (125 samples)
             if int(timestamp * SFREQ) % 125 == 0:
-                # Signal Normalization
-                inp = (buffer - np.mean(buffer, axis=-1, keepdims=True)) / np.std(buffer, axis=-1, keepdims=True)
+                # Z-score Normalization (Lighter than full pipelines)
+                inp = (buffer - np.mean(buffer, axis=-1, keepdims=True)) / (np.std(buffer, axis=-1, keepdims=True) + 1e-6)
                 inp = inp.reshape(1, CHANNELS, WINDOW_SIZE, 1)
                 
+                # Inference
                 probs = model.predict(inp, verbose=0)[0]
                 pred_idx = np.argmax(probs)
                 confidence = probs[pred_idx]
 
-                # Update Bar Chart
+                # Update UI Components
                 chart_data = pd.DataFrame({'Class': CLASS_NAMES, 'Probability': probs})
                 chart_placeholder.bar_chart(chart_data, x='Class', y='Probability', color="#0072B2")
 
-                # UI Feedback
                 if confidence > 0.60:
                     icons = {"Left Hand": "⬅️", "Right Hand": "➡️", "Foot": "🦶", "Tongue": "👅"}
                     label = CLASS_NAMES[pred_idx]
