@@ -43,25 +43,42 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 8.  **`6.bci_simulation.ipynb`**: Advanced simulation notebook for performance benchmarking.
 9.  **`7.bci_demo.py`**: Refined standalone demo script for system-level testing.
     
-## 4. Interactive Live Demo
+## 4. Interactive BCI Demos 
 
-Experience the BCI decoding pipeline in real-time through the dedicated Streamlit application. This dashboard allows you to simulate a BCI session and visualize how neural signals are transformed into motor commands.
-
-###  [**Access the Live BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/)
+Experience the BCI decoding pipeline in real-time through two dedicated Streamlit applications. These dashboards simulate live BCI sessions, visualizing how neural signals are transformed into motor commands.
 
 ---
 
-### What you can explore:
-* **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs from the BCI Competition IV-2a dataset.
-* **Spatial Feature Visualization:** View the **CSP Topomaps** generated for each subject to verify that the model is correctly targeting the motor cortex (C3/C4).
-* **Performance Analytics:** Monitor classification confidence and accuracy during the simulated "online" session.
-* **Signal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) and artifact rejection on the raw neural signal.
+###  Binary Decoding (2-Class Simulation)
+*Focus: Traditional CSP + LDA pipeline for Left vs. Right hand imagery.*
 
-> **Note:** The demo utilizes pre-processed `.fif` files from the `cleaned_data` folder to ensure optimal performance and focus on the decoding logic.
+ [**Access Binary BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-zrq3ni6ifn5tzybufphdm.streamlit.app/)
+
+* **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs window-by-window.
+* **Spatial Feature Visualization:** View the **CSP Topomaps** to verify the model is correctly targeting the motor cortex (C3/C4).
+* **Signal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) on the raw neural signal.
+
+---
+
+###  Multi-Class Decoding (4-Class Advanced)
+*Focus: Deep Learning (EEGNet) for Left Hand, Right Hand, Feet, and Tongue imagery.*
+
+ [**Access Multi-Class BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-3wocziusssgz9pfwygaqb.streamlit.app/)
+
+* **Deep Learning Inference:** Real-time predictions using a pre-trained **EEGNet** model (optimized for 4-class discrimination).
+* **Probability Distribution:** A dynamic bar chart visualizes the model's confidence across all four classes in real-time.
+* **Smart Streamer Logic:** Connects to a simulated LSL stream with automatic exit conditions, mimicking a clinical recording session.
+
+---
+
+> **Note:** Both demos utilize pre-processed `.fif` files (Subject A07T) to ensure optimal performance and allow for a focus on the real-time decoding logic and UI feedback.
 
 ##  Tech Stack
+
 * **Language:** Python
 * **Neuro-Signal Processing:** `MNE-Python`
-* **Machine Learning:** `Scikit-learn`
-* **Deep Learning:** `TensorFlow/Keras`
-* **Visualization:** `Matplotlib`, `Seaborn`
+* **Machine Learning:** `Scikit-learn` (CSP + LDA Pipeline)
+* **Deep Learning:** `TensorFlow/Keras` (EEGNet Architecture)
+* **Real-Time Data Streaming:** `PyLSL` (Lab Streaming Layer)
+* **Deployment and UI:** `Streamlit` (Cloud Hosting and Dashboarding)
+* **Visualization:** `Matplotlib`, `Seaborn`, `Plotly`
