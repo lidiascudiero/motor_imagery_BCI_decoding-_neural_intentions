@@ -36,6 +36,18 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 8.  **`6.bci_simulation.ipynb`**: Advanced simulation notebook for performance benchmarking.
 9.  **`7.bci_demo.py`**: Refined standalone demo script for system-level testing.
 
+## 4. Interactive Live Demo
+
+Experience the BCI decoding pipeline in action. This dashboard simulates a real-time Brain-Computer Interface session, processsing neural signals to predict user intentions.
+
+ [**Access the Live BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-esdr26zbsmzbplefcqskz.streamlit.app/)
+
+### What you can explore:
+* **Dynamic Epoch Visualization:** Watch the raw EEG signal as it is processed window-by-window during the simulation.
+* **Real-Time Classification:** Observe the model's confidence levels (Probabilities) as it decodes "Left Hand" vs "Right Hand" imagery.
+* **Subject-Specific Simulation:** Test how the pre-trained pipeline handles different neural signatures from the BCI Competition dataset.
+* **Low-Latency Inference:** A demonstration of how LDA and CSP work together to provide near-instantaneous decoding, critical for BCI applications.
+
 ##  Tech Stack
 * **Language:** Python
 * **Neuro-Signal Processing:** `MNE-Python`
