@@ -10,9 +10,5 @@ plotly
 # Machine Learning (for 2-class demo)
 scikit-learn
 
-# Deep Learning (for 4-class demo)
-tensorflow
 
-# Real-Time Streaming (for 4-class demo)
-pylsl
                                                              
