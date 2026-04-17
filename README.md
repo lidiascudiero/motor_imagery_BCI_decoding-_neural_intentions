@@ -2,18 +2,6 @@
 
 This project implements a complete **Brain-Computer Interface (BCI)** pipeline to decode motor imagery (left hand vs. right hand) from EEG signals. Moving beyond simple classification, the focus is on **advanced signal preprocessing** and **artifact rejection** to ensure high-fidelity neural decoding.
 ---
-### Author's Note: The Neuroscientist's Perspective
-
-As a Neuroscientist transitioned into Data Science, my approach to BCI is not just about maximizing accuracy scores; it's about **physiological integrity**. 
-
-In this project, I treated EEG data not merely as a stochastic time series, but as a window into neural dynamics. My domain expertise guided critical decisions that a standard data pipeline might overlook:
-
-* **The "Why" behind Filtering:** I didn't just band-pass for noise; I targeted the **8-30 Hz range** specifically to preserve the **Mu and Beta desynchronization (ERD)**, which is the gold standard for motor imagery.
-* **ICA with Intent:** Instead of automated cleaning, I focused on identifying and isolating EOG/EMG components to ensure the model learns from **cortical sources**, not muscular artifacts.
-* **Beyond the Black Box:** By visualizing CSP Topomaps, I validated that the model’s "attention" was physically located over the **C3 and C4 motor strips**, ensuring that the classification is neurobiologically grounded and not just a statistical fluke.
-
-For me, Data Science is the tool, but Neuroscience is the compass.
----
 
 ##  Project Overview
 Decoding neural signals is a challenge of **Signal-to-Noise Ratio (SNR)**. EEG data is notoriously noisy, contaminated by ocular (EOG) and muscular (EMG) artifacts. This project applies a rigorous **neuro-engineering approach** to transform raw, noisy brainwaves into actionable commands.
@@ -21,6 +9,20 @@ Decoding neural signals is a challenge of **Signal-to-Noise Ratio (SNR)**. EEG d
 - **Dataset:** BCI Competition IV-2a (9 subjects, Motor Imagery).
 - **Primary Architecture:** CSP (Common Spatial Patterns) + LDA (Linear Discriminant Analysis).
 - **Experimental Feature:** Deep Learning (EEGNet/Gaussian variations) for non-linear feature extraction.
+
+---
+### Author's Note: The Neuro-Data Perspective
+
+As a Neuroscientist transitioned into Data Science, my approach to BCI is built on the synergy between **physiological integrity** and **algorithmic precision**. 
+
+In this project, I treat EEG data not merely as a stochastic time series, but as a window into neural dynamics. My domain expertise guided critical decisions where Neuroscience and Data Science meet:
+
+* **The "Why" behind Filtering:** I didn't just band-pass for noise; I targeted the **8-30 Hz range** specifically to preserve the **Mu and Beta desynchronization (ERD)**, which is the gold standard for motor imagery.
+* **ICA with Intent:** Instead of automated cleaning, I focused on identifying and isolating EOG/EMG components to ensure the model learns from **cortical sources**, not muscular artifacts.
+* **Beyond the Black Box:** By visualizing CSP Topomaps, I validated that the model’s "attention" was physically located over the **C3 and C4 motor strips**, ensuring that the classification is neurobiologically grounded.
+
+**I view Data Science as the bridge that translates neural complexity into actionable, real-world interactions.**
+---
 
 ##  The Pipeline: From Brain to Command
 
