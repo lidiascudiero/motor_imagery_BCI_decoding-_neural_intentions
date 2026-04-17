@@ -4,8 +4,5 @@ pandas
 scikit-learn
 matplotlib
 plotly
-tensorflow
-pylsl
-threading                                                        
 
                                                              
