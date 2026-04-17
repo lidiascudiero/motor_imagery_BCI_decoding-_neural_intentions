@@ -63,7 +63,7 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
 ###  Multi-Class Decoding (4-Class Advanced)
 *Focus: Deep Learning (EEGNet) for Left Hand, Right Hand, Feet, and Tongue imagery.*
 
- [**Access Multi-Class BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-cthqwdblnysiclnn3qkyv.streamlit.app/)
+ [**Access Multi-Class BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-3wocziusssgz9pfwygaqb.streamlit.app/)
 
 * **Deep Learning Inference:** Real-time predictions using a pre-trained **EEGNet** model (optimized for 4-class discrimination).
 * **Probability Distribution:** A dynamic bar chart visualizes the model's confidence across all four classes in real-time.
