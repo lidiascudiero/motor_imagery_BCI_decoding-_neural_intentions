@@ -7,7 +7,8 @@ preventing unnecessary CPU overhead once the subject's dataset is fully processe
 import streamlit as st
 import numpy as np
 import tensorflow as tf
-import pandas as pd"""
+import pandas as pd
+"""
 The streamer is designed with a sample-limit exit condition. 
 This ensures that the simulation mimics a standard clinical recording session, 
 preventing unnecessary CPU overhead once the subject's dataset is fully processed.
