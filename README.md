@@ -22,7 +22,7 @@ Decoding neural signals is a challenge of **Signal-to-Noise Ratio (SNR)**. EEG d
 The most critical phase. Without high-quality data, even the best model fails.
 * **Temporal Filtering:** Band-pass filtering (8-30 Hz) to isolate **Mu and Beta rhythms**.
 * **Artifact Mitigation (ICA):** Applied **Independent Component Analysis** to isolate and remove blinks (EOG) without destroying underlying neural signals.
-* **Re-referencing:** Applied Common Average Reference (CAR) to increase the SNR.
+* **Re-referencing:** Applied **Common Average Reference (CAR)** to increase the SNR.
 
 ### 2. Feature Extraction & Decoding
 * **Spatial Filtering (CSP):** Implemented **Common Spatial Patterns** to maximize variance between classes, transforming high-dimensional EEG space into an optimized discriminative space.
