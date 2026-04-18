@@ -55,6 +55,7 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
  [**Access Binary BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-cthqwdblnysiclnn3qkyv.streamlit.app/)
 
 * **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs window-by-window.
+* **Performance:** **68% Accuracy** using spatial filter optimization.
 * **Spatial Feature Visualization:** View the **CSP Topomaps** to verify the model is correctly targeting the motor cortex (C3/C4).
 * **Signal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) on the raw neural signal.
 
@@ -66,6 +67,7 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
  [**Access Multi-Class BCI Dashboard**](https://motorimagerybcidecoding-neuralintentions-mbwweplgpktgtcxr98urj.streamlit.app/)
 
 * **Deep Learning Inference:** Real-time predictions using a pre-trained **EEGNet** model (optimized for 4-class discrimination).
+* **Performance:** **63.4% Accuracy** (Chance level: 25%).
 * **Probability Distribution:** A dynamic bar chart visualizes the model's confidence across all four classes in real-time.
 * **Smart Streamer Logic:** Connects to a simulated LSL stream with automatic exit conditions, mimicking a clinical recording session.
 
