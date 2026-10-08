@@ -12,8 +12,13 @@ Decoding neural signals is a challenge of **Signal-to-Noise Ratio (SNR)**. EEG d
 
 ---
 
-## The "Neuro-Data" Angle 
-> **Author's Note:** Leveraging my background in **Cognitive Neuroscience**, I approached this EEG dataset not just as a stochastic time series, but as a window into neural dynamics. My expertise in biological signals allows me to bridge the gap between physiological integrity and algorithmic precision. In this project, I focused on how specific neural signatures—such as **Mu/Beta desynchronization (ERD)**—translate into actionable digital commands, ensuring that the model’s "attention" remains neurobiologically grounded over the motor cortex rather than fitting to stochastic noise.
+## The “Neuro-Data” Angle
+
+> **Author’s Note:** Leveraging my background in **Cognitive Neuroscience**, I approached this EEG dataset not simply as a stochastic time series, but as a window into neural dynamics. The aim was to bridge physiological plausibility and algorithmic performance: to investigate whether neural signatures associated with motor imagery—particularly sensorimotor **Mu/Beta event-related desynchronization (ERD)** could be transformed into reliable digital commands through a rigorous decoding pipeline.
+>
+> Beyond classification accuracy, I examined whether the learned spatial representations were consistent with established neurophysiological expectations. I inspected CSP patterns and topographies to assess their qualitative alignment with sensorimotor scalp regions, including electrodes overlying the C3/C4 areas that are commonly associated with hand motor imagery. This provides evidence of **physiological plausibility**, rather than proof of cortical source localisation: scalp EEG topographies are affected by volume conduction and do not directly identify neural generators without dedicated source-reconstruction methods.
+>
+> This perspective guided the full pipeline—from artifact mitigation and band-pass filtering to spatial filtering and model evaluation—helping reduce the risk that the classifier relied primarily on noise, non-neural artifacts, or dataset-specific correlations rather than task-relevant sensorimotor patterns.
 
 ---
 ##  The Pipeline: From Brain to Command
