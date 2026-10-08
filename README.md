@@ -29,11 +29,11 @@ The most critical phase. Without high-quality data, even the best model fails.
 * **Artifact Mitigation (ICA):** Applied **Independent Component Analysis** to isolate and remove blinks (EOG) without destroying underlying neural signals.
 * **Re-referencing:** Applied **Common Average Reference (CAR)** to increase the SNR.
 
-### 2. Feature Extraction & Decoding
+### 2. Feature Extraction and decoding
 * **Spatial Filtering (CSP):** Implemented **Common Spatial Patterns** to maximize variance between classes, transforming high-dimensional EEG space into an optimized discriminative space.
 * **Classification:** Used **LDA** for its robustness and low latency, making it ideal for real-time applications.
 
-### 3. Real-Time Simulation & Demo
+### 3. Real-Time Simulation and demo
 I developed a **BCI Simulation environment** to test the model's performance in a pseudo-real-time scenario, simulating how a system reacts to neural commands.
 
 ##  Repository Structure: The Full Pipeline
