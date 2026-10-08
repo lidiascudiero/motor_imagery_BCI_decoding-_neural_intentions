@@ -18,7 +18,7 @@ Decoding neural signals is a challenge of **Signal-to-Noise Ratio (SNR)**. EEG d
 >
 > Beyond classification accuracy, I examined whether the learned spatial representations were consistent with established neurophysiological expectations. I inspected CSP patterns and topographies to assess their qualitative alignment with sensorimotor scalp regions, including electrodes overlying the C3/C4 areas that are commonly associated with hand motor imagery. This provides evidence of **physiological plausibility**, rather than proof of cortical source localisation: scalp EEG topographies are affected by volume conduction and do not directly identify neural generators without dedicated source-reconstruction methods.
 >
-> This perspective guided the full pipeline—from artifact mitigation and band-pass filtering to spatial filtering and model evaluation—helping reduce the risk that the classifier relied primarily on noise, non-neural artifacts, or dataset-specific correlations rather than task-relevant sensorimotor patterns.
+> This perspective guided the full pipeline,from artifact mitigation and band-pass filtering to spatial filtering and model evaluation,helping reduce the risk that the classifier relied primarily on noise, non-neural artifacts, or dataset-specific correlations rather than task-relevant sensorimotor patterns.
 
 ---
 ##  The Pipeline: From Brain to Command
