@@ -293,7 +293,7 @@ def run_streamlit_bci():
 
             # Inference every 0.5 seconds (125 samples)
             if int(timestamp * SFREQ) % 125 == 0:
-                # Z-score Normalization (Lighter than full pipelines)
+                # Z-score Normalization (lighter than full pipelines)
                 inp = (buffer - np.mean(buffer, axis=-1, keepdims=True)) / (np.std(buffer, axis=-1, keepdims=True) + 1e-6)
                 inp = inp.reshape(1, CHANNELS, WINDOW_SIZE, 1)
                 
