@@ -26,7 +26,7 @@ CLASS_NAMES = ['Left Hand', 'Right Hand', 'Foot', 'Tongue']
 
 st.set_page_config(page_title="BCI 4-Class Real-Time Decoder", layout="wide")
 
-# --- 1. SMART STREAMER LOGIC (MEMORY OPTIMIZED) ---
+# --- 1. SMART STREAMER LOGIC ---
 def start_smart_streamer(subject_id='A07T'):
     """Simulates an EEG headset by streaming data through LSL."""
     def streamer_loop():
@@ -188,7 +188,7 @@ CLASS_NAMES = ['Left Hand', 'Right Hand', 'Foot', 'Tongue']
 
 st.set_page_config(page_title="BCI 4-Class Real-Time Decoder", layout="wide")
 
-# --- 1. SMART STREAMER LOGIC (MEMORY OPTIMIZED) ---
+# --- 1. SMART STREAMER LOGIC ---
 def start_smart_streamer(subject_id='A07T'):
     """Simulates an EEG headset by streaming data through LSL."""
     def streamer_loop():
