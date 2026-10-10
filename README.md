@@ -82,11 +82,11 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
 > **Note:** Both demos utilize pre-processed `.fif` files (Subject A07T) to ensure optimal performance and allow for a focus on the real-time decoding logic and UI feedback. For architectural clarity, the repository is organized into independent directories, each containing its own specific preprocessing pipeline (8-30 Hz for Binary vs. 1-40 Hz for Multi-Class) and dedicated environment requirements.
 
 
-### Methodological Evolution: pooled evaluation vs. cross-subject generalization
+### Methodological evolution: pooled evaluation vs. cross-subject generalization
 
 This repository explores two evaluation protocols for four-class motor imagery decoding with deep learning. The distinction is important because performance on previously observed participants does not necessarily translate into reliable predictions for unseen users.
 
-**1. Pooled random Split — `5.deep_learning_guassian_class.ipynb`**
+**1. Pooled random split  `5.deep_learning_guassian_class.ipynb`**
 
 The initial experiment pools EEG trials from all nine participants and applies a random 80/20 train-test split using `train_test_split`.
 
@@ -94,7 +94,7 @@ The resulting test set contains trials from participants who are also represente
 
 This protocol evaluates classification performance on held-out trials drawn from a population of participants represented during training. It does not directly measure generalization to entirely unseen individuals, and subject-specific characteristics may contribute to the observed performance.
 
-**2. Subject-Wise Evaluation — `5_deep_learning_guassian_class (1).ipynb`**
+**2. Subject-wise Evaluation  `5.1_deep_learning_guassian_class_sub.ipynb`**
 
 The revised experiment separates participants before constructing the training, validation, and test datasets:
 
@@ -108,13 +108,13 @@ The reported test accuracy is **47%**, compared with a nominal chance level of 2
 
 **Key takeaway**
 
-The difference between the reported accuracies should not be interpreted as a direct comparison of model quality. The experiments use different evaluation protocols and answer different questions.
+ * The difference between the reported accuracies should not be interpreted as a direct comparison of model quality. The experiments use different evaluation protocols and answer different questions.
 
-The pooled random split measures performance on unseen trials from participants represented during training, whereas the subject-wise protocol evaluates transfer to previously unseen participants.
+* The pooled random split measures performance on unseen trials from participants represented during training, whereas the subject-wise protocol evaluates transfer to previously unseen participants.
 
-This methodological progression highlights an important challenge in motor imagery BCI research: developing decoders that remain effective across individuals rather than relying on subject-specific calibration.
+* This methodological progression highlights an important challenge in motor imagery BCI research: developing decoders that remain effective across individuals rather than relying on subject-specific calibration.
 
-The cross-subject result is preliminary evidence of performance above nominal chance level, not by itself proof of statistically significant or physiologically interpretable generalization. Further validation across additional participants and repeated subject-wise splits is needed.
+* The cross-subject result is preliminary evidence of performance above nominal chance level, not by itself proof of statistically significant or physiologically interpretable generalization. Further validation across additional participants and repeated subject-wise splits is needed.
 
 ##  Tech Stack
 
