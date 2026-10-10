@@ -59,11 +59,11 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
 
  [**Access Binary BCI Dashboard**](https://lidiascudiero-demo-2-class-bci.hf.space)
 
-* **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs window-by-window.
+* **Real-Time simulation:** Observe the decoding process as the system processes EEG epochs window-by-window.
 * **Performance:** 77% aggregated test accuracy (with top-performing subjects like A07 reaching 77.9%). Across all 9 participants, the model yields a mean within-subject accuracy of 65.7% (±8.4%), highlighting the inherent inter-subject variability in motor imagery BCI applications.
 * **Algorithmic fairness:** balanced accuracy matches standard accuracy exactly (0.769), with near-identical F1-scores for Left Hand (0.767) and Right Hand (0.771), confirming the CSP+LDA pipeline has no systematic prediction bias.
-* **Spatial Feature Visualization:** View the **CSP Topomaps** to verify the model is correctly targeting the motor cortex (C3/C4).
-* **Signal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) on the raw neural signal.
+* **Spatial feature visualization:** View the **CSP Topomaps** to verify the model is correctly targeting the motor cortex (C3/C4).
+* **Signal integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) on the raw neural signal.
 
 ---
 
@@ -72,10 +72,10 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
 
  [**Access Multi-Class BCI Dashboard**](https://lidiascudiero-demo-4-class-bci.hf.space)
 
-* **Deep Learning Inference:** Real-time predictions using a pre-trained **EEGNet** model (optimized for 4-class discrimination).
+* **Deep Learning inference:** real-time predictions using a pre-trained **EEGNet** model (optimized for 4-class discrimination).
 * **Performance:** **63.4% Accuracy** (Chance level: 25%).
-* **Probability Distribution:** A dynamic bar chart visualizes the model's confidence across all four classes in real-time.
-* **Smart Streamer Logic:** Connects to a simulated LSL stream with automatic exit conditions, mimicking a clinical recording session.
+* **Probability distribution:** a dynamic bar chart visualizes the model's confidence across all four classes in real-time.
+* **Smart Streamer logic:** connects to a simulated LSL stream with automatic exit conditions, mimicking a clinical recording session.
 
 ---
 
