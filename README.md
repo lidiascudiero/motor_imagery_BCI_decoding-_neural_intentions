@@ -40,7 +40,7 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 
 1.  **`1.exploratory_analysis.ipynb`**: Preliminary inspection, PSD (Power Spectral Density) analysis, and signal visualization.
 2.  **`2.preprocessing_signal_cleaned.ipynb`**: Core preprocessing logic: filtering, CAR, and ICA artifact rejection.
-3.  **`3.mi_decoding_CSP_LDA.ipynb`**: The main decoding engine using CSP spatial filters and LDA classification.
+3.  **`3.mi_decoding_CSP_LDA_.ipynb`**: The main decoding engine using CSP spatial filters and LDA classification.
 4.  **`4.0.bci_simulation.ipynb`**: Jupyter-based simulation of a BCI session to validate the model's response.
 5.  **`4.1.bci_demo.py`**: Python script for a modular BCI demonstration.
 6.  **`5.0.preprocessing_signal_dl.ipynb`**: Specific preprocessing pipeline tailored for Deep Learning input shapes.
