@@ -45,9 +45,9 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 5.  **`4.1.bci_demo.py`**: Python script for a modular BCI demonstration.
 6.  **`5.0.preprocessing_signal_dl.ipynb`**: Specific preprocessing pipeline tailored for Deep Learning input shapes.
 7.  **`5.deep_learning_guassian_class.ipynb`**: Implementation of Deep Learning models (Gaussian-based classifiers) for neural decoding.
-8.  **`5.2.deep_learning_guassian_class_sub.ipynb`**: Implementation of Deep Learning models (Gaussian-based classifiers) for neural decoding with subject wise split.
-9.  **`6.bci_simulation.ipynb`**: Advanced simulation notebook for performance benchmarking.
-10.  **`7.bci_demo.py`**: Refined standalone demo script for system-level testing.
+8.  **`6.bci_simulation.ipynb`**: Advanced simulation notebook for performance benchmarking.
+9.  **`7.bci_demo.py`**: Refined standalone demo script for system-level testing.
+10. **`8.deep_learning_guassian_class_sub.ipynb`**: Implementation of Deep Learning models (Gaussian-based classifiers) for neural decoding with subject wise split.
     
 ## 4. Interactive BCI Demos 
 
@@ -95,7 +95,7 @@ The resulting test set contains trials from participants who are also represente
 
 This protocol evaluates classification performance on held-out trials drawn from a population of participants represented during training. It does not directly measure generalization to entirely unseen individuals, and subject-specific characteristics may contribute to the observed performance.
 
-**2. Subject-wise Evaluation  `5.1_deep_learning_guassian_class_sub.ipynb`**
+**2. Subject-wise Evaluation  `8.deep_learning_guassian_class_sub.ipynb`**
 
 The revised experiment separates participants before constructing the training, validation, and test datasets:
 
