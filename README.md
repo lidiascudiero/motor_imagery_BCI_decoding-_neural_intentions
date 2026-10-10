@@ -60,7 +60,7 @@ Experience the BCI decoding pipeline in real-time through two dedicated Streamli
  [**Access Binary BCI Dashboard**](https://lidiascudiero-demo-2-class-bci.hf.space)
 
 * **Real-Time Simulation:** Observe the decoding process as the system processes EEG epochs window-by-window.
-* **Performance:** **68% Accuracy** using spatial filter optimization.
+* **Performance:**77% aggregated test accuracy** (with top-performing subjects like A07 reaching 77.9%). Across all 9 participants, the model yields a mean within-subject accuracy of 65.7% (±8.4%), highlighting the inherent inter-subject variability in motor imagery BCI applications.
 * **Spatial Feature Visualization:** View the **CSP Topomaps** to verify the model is correctly targeting the motor cortex (C3/C4).
 * **Signal Integrity:** Inspect the impact of Mu/Beta band-pass filtering (8-30 Hz) on the raw neural signal.
 
