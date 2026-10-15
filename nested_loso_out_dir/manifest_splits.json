@@ -1,0 +1,506 @@
+{
+    "A01T": {
+        "development_subjects": [
+            "A02T",
+            "A03T",
+            "A04T",
+            "A05T",
+            "A06T",
+            "A07T",
+            "A08T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A02T",
+                    "A04T",
+                    "A05T",
+                    "A07T",
+                    "A08T"
+                ],
+                "val": [
+                    "A03T",
+                    "A06T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A03T",
+                    "A04T",
+                    "A06T",
+                    "A07T",
+                    "A09T"
+                ],
+                "val": [
+                    "A02T",
+                    "A05T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A03T",
+                    "A05T",
+                    "A06T",
+                    "A08T",
+                    "A09T"
+                ],
+                "val": [
+                    "A04T",
+                    "A07T"
+                ]
+            }
+        ]
+    },
+    "A02T": {
+        "development_subjects": [
+            "A01T",
+            "A03T",
+            "A04T",
+            "A05T",
+            "A06T",
+            "A07T",
+            "A08T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A04T",
+                    "A05T",
+                    "A07T",
+                    "A08T"
+                ],
+                "val": [
+                    "A03T",
+                    "A06T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A03T",
+                    "A04T",
+                    "A06T",
+                    "A07T",
+                    "A09T"
+                ],
+                "val": [
+                    "A01T",
+                    "A05T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A03T",
+                    "A05T",
+                    "A06T",
+                    "A08T",
+                    "A09T"
+                ],
+                "val": [
+                    "A04T",
+                    "A07T"
+                ]
+            }
+        ]
+    },
+    "A03T": {
+        "development_subjects": [
+            "A01T",
+            "A02T",
+            "A04T",
+            "A05T",
+            "A06T",
+            "A07T",
+            "A08T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A04T",
+                    "A05T",
+                    "A07T",
+                    "A08T"
+                ],
+                "val": [
+                    "A02T",
+                    "A06T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A04T",
+                    "A06T",
+                    "A07T",
+                    "A09T"
+                ],
+                "val": [
+                    "A01T",
+                    "A05T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A02T",
+                    "A05T",
+                    "A06T",
+                    "A08T",
+                    "A09T"
+                ],
+                "val": [
+                    "A04T",
+                    "A07T"
+                ]
+            }
+        ]
+    },
+    "A04T": {
+        "development_subjects": [
+            "A01T",
+            "A02T",
+            "A03T",
+            "A05T",
+            "A06T",
+            "A07T",
+            "A08T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A03T",
+                    "A05T",
+                    "A07T",
+                    "A08T"
+                ],
+                "val": [
+                    "A02T",
+                    "A06T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A03T",
+                    "A06T",
+                    "A07T",
+                    "A09T"
+                ],
+                "val": [
+                    "A01T",
+                    "A05T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A02T",
+                    "A05T",
+                    "A06T",
+                    "A08T",
+                    "A09T"
+                ],
+                "val": [
+                    "A03T",
+                    "A07T"
+                ]
+            }
+        ]
+    },
+    "A05T": {
+        "development_subjects": [
+            "A01T",
+            "A02T",
+            "A03T",
+            "A04T",
+            "A06T",
+            "A07T",
+            "A08T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A03T",
+                    "A04T",
+                    "A07T",
+                    "A08T"
+                ],
+                "val": [
+                    "A02T",
+                    "A06T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A03T",
+                    "A06T",
+                    "A07T",
+                    "A09T"
+                ],
+                "val": [
+                    "A01T",
+                    "A04T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A02T",
+                    "A04T",
+                    "A06T",
+                    "A08T",
+                    "A09T"
+                ],
+                "val": [
+                    "A03T",
+                    "A07T"
+                ]
+            }
+        ]
+    },
+    "A06T": {
+        "development_subjects": [
+            "A01T",
+            "A02T",
+            "A03T",
+            "A04T",
+            "A05T",
+            "A07T",
+            "A08T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A03T",
+                    "A04T",
+                    "A07T",
+                    "A08T"
+                ],
+                "val": [
+                    "A02T",
+                    "A05T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A03T",
+                    "A05T",
+                    "A07T",
+                    "A09T"
+                ],
+                "val": [
+                    "A01T",
+                    "A04T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A02T",
+                    "A04T",
+                    "A05T",
+                    "A08T",
+                    "A09T"
+                ],
+                "val": [
+                    "A03T",
+                    "A07T"
+                ]
+            }
+        ]
+    },
+    "A07T": {
+        "development_subjects": [
+            "A01T",
+            "A02T",
+            "A03T",
+            "A04T",
+            "A05T",
+            "A06T",
+            "A08T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A03T",
+                    "A04T",
+                    "A06T",
+                    "A08T"
+                ],
+                "val": [
+                    "A02T",
+                    "A05T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A03T",
+                    "A05T",
+                    "A06T",
+                    "A09T"
+                ],
+                "val": [
+                    "A01T",
+                    "A04T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A02T",
+                    "A04T",
+                    "A05T",
+                    "A08T",
+                    "A09T"
+                ],
+                "val": [
+                    "A03T",
+                    "A06T"
+                ]
+            }
+        ]
+    },
+    "A08T": {
+        "development_subjects": [
+            "A01T",
+            "A02T",
+            "A03T",
+            "A04T",
+            "A05T",
+            "A06T",
+            "A07T",
+            "A09T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A03T",
+                    "A04T",
+                    "A06T",
+                    "A07T"
+                ],
+                "val": [
+                    "A02T",
+                    "A05T",
+                    "A09T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A03T",
+                    "A05T",
+                    "A06T",
+                    "A09T"
+                ],
+                "val": [
+                    "A01T",
+                    "A04T",
+                    "A07T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A02T",
+                    "A04T",
+                    "A05T",
+                    "A07T",
+                    "A09T"
+                ],
+                "val": [
+                    "A03T",
+                    "A06T"
+                ]
+            }
+        ]
+    },
+    "A09T": {
+        "development_subjects": [
+            "A01T",
+            "A02T",
+            "A03T",
+            "A04T",
+            "A05T",
+            "A06T",
+            "A07T",
+            "A08T"
+        ],
+        "inner_splits": [
+            {
+                "train": [
+                    "A01T",
+                    "A03T",
+                    "A04T",
+                    "A06T",
+                    "A07T"
+                ],
+                "val": [
+                    "A02T",
+                    "A05T",
+                    "A08T"
+                ]
+            },
+            {
+                "train": [
+                    "A02T",
+                    "A03T",
+                    "A05T",
+                    "A06T",
+                    "A08T"
+                ],
+                "val": [
+                    "A01T",
+                    "A04T",
+                    "A07T"
+                ]
+            },
+            {
+                "train": [
+                    "A01T",
+                    "A02T",
+                    "A04T",
+                    "A05T",
+                    "A07T",
+                    "A08T"
+                ],
+                "val": [
+                    "A03T",
+                    "A06T"
+                ]
+            }
+        ]
+    }
+}
