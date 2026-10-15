@@ -118,7 +118,7 @@ The reported test accuracy is **47%**, compared with a nominal chance level of 2
 * The cross-subject result is preliminary evidence of performance above nominal chance level, not by itself proof of statistically significant or physiologically interpretable generalization. Further validation across additional participants and repeated subject-wise splits is needed.
 
 
-### Nested LOSO Evaluation
+### Nested LOSO Evaluation `8.2_nested_loso.ipynb`
 
 EEGNet was evaluated on nine held-out participants using a nested leave-one-subject-out protocol, with subject-wise inner cross-validation for hyperparameter selection.
 
