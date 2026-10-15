@@ -117,7 +117,6 @@ The reported test accuracy is **47%**, compared with a nominal chance level of 2
 
 * The cross-subject result is preliminary evidence of performance above nominal chance level, not by itself proof of statistically significant or physiologically interpretable generalization. Further validation across additional participants and repeated subject-wise splits is needed.
 
-## Results
 
 ### Nested LOSO Evaluation
 
@@ -141,15 +140,15 @@ EEGNet was evaluated on nine held-out participants using a nested leave-one-subj
 
 ### Interpretation
 
-Under the evaluated settings, Gaussian-noise augmentation (\(\sigma = 0.05\), applied on the fly to a randomly selected 50% of training trials) did not produce a substantial average performance gain. The observed effects varied across participants, suggesting that augmentation alone may be insufficient to address inter-subject variability in motor-imagery EEG.
+Under the evaluated settings, Gaussian-noise augmentation applied on the fly to a randomly selected 50% of training trials) did not produce a substantial average performance gain. The observed effects varied across participants, suggesting that augmentation alone may be insufficient to address inter-subject variability in motor-imagery EEG.
 
 These findings are descriptive and do not establish statistical equivalence between the two conditions. The evaluation includes nine participants, and further experiments with additional subjects and repeated training seeds would help assess the robustness of the results.
 
 The evaluation uses a nested subject-wise protocol: the outer test participant is excluded from inner hyperparameter selection, and the final model is trained on the development participants using epoch counts derived from inner validation. Because the dataset has been explored during earlier development, the results should be interpreted as retrospective validation rather than a fully prospective clinical evaluation.
 
-** Next steps: cross-session generalization**
+**Next steps: cross-session generalization**
 
-Developing and evaluating convolutional neural networks for four-class motor-imagery EEG classification. Investigated subject-independent generalization using leave-one-subject-out validation, comparing Gaussian-noise data augmentation strategies, and examining the impact of frequency-band selection. Extended the evaluation toward cross-session generalization to investigate robustness to changes in EEG recording conditions.
+Examineed the impact of frequency-band selection. Extended the evaluation toward cross-session generalization to investigate robustness to changes in EEG recording conditions.
 
 ##  Tech Stack
 
