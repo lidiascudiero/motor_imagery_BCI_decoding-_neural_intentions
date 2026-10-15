@@ -117,6 +117,10 @@ The reported test accuracy is **47%**, compared with a nominal chance level of 2
 
 * The cross-subject result is preliminary evidence of performance above nominal chance level, not by itself proof of statistically significant or physiologically interpretable generalization. Further validation across additional participants and repeated subject-wise splits is needed.
 
+**Cross-Subject Motor Imagery EEG Decoding: CNNs, LOSO Validation, and Cross-Session Generalization**
+
+Developed and evaluated convolutional neural networks for four-class motor-imagery EEG classification. Investigated subject-independent generalization using leave-one-subject-out validation, compared Gaussian-noise data augmentation strategies, and examined the impact of frequency-band selection. Extended the evaluation toward cross-session generalization to investigate robustness to changes in EEG recording conditions.
+
 ##  Tech Stack
 
 * **Language:** Python
