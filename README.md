@@ -95,7 +95,7 @@ The resulting test set contains trials from participants who are also represente
 
 This protocol evaluates classification performance on held-out trials drawn from a population of participants represented during training. It does not directly measure generalization to entirely unseen individuals, and subject-specific characteristics may contribute to the observed performance.
 
-**2. Subject-wise Evaluation  `8.deep_learning_guassian_class_sub.ipynb`**
+**2. Subject-wise Evaluation  `8_deep_learning_guassian_class_sub_holdout.ipynb`**
 
 The revised experiment separates participants before constructing the training, validation, and test datasets:
 
