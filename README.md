@@ -48,6 +48,7 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 8.  **`6.bci_simulation.ipynb`**: Advanced simulation notebook for performance benchmarking.
 9.  **`7.bci_demo.py`**: Refined standalone demo script for system-level testing.
 10. **`8.deep_learning_guassian_class_sub.ipynb`**: implementation of Deep Learning models (Gaussian-based classifiers) for neural decoding with subject wise split.
+11. **`8.2_nested_loso.ipynb`** : EEGNet was evaluated on nine held-out participants using a nested leave-one-subject-out protocol (outputs in nested_loso_out_dir)
     
 ## 4. Interactive BCI Demos 
 
