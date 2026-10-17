@@ -47,8 +47,8 @@ I developed a **BCI Simulation environment** to test the model's performance in 
 7.  **`5.deep_learning_guassian_class.ipynb`**: Implementation of Deep Learning models (Gaussian-based classifiers) for neural decoding.
 8.  **`6.bci_simulation.ipynb`**: Advanced simulation notebook for performance benchmarking.
 9.  **`7.bci_demo.py`**: Refined standalone demo script for system-level testing.
-10. **`8.deep_learning_guassian_class_sub.ipynb`**: implementation of Deep Learning models (Gaussian-based classifiers) for neural decoding with subject wise split.
-11. **`8.2_nested_loso.ipynb`** : EEGNet was evaluated on nine held-out participants using a nested leave-one-subject-out protocol (outputs in nested_loso_out_dir)
+10. **`8.0_deep_learning_guassian_class_sub.ipynb`**: implementation of Deep Learning models (Gaussian-based classifiers) for neural decoding with subject wise split.
+11. **`8.1_nested_loso.ipynb`** : EEGNet was evaluated on nine held-out participants using a nested leave-one-subject-out protocol (outputs in nested_loso_out_dir)
     
 ## 4. Interactive BCI Demos 
 
@@ -96,7 +96,7 @@ The resulting test set contains trials from participants who are also represente
 
 This protocol evaluates classification performance on held-out trials drawn from a population of participants represented during training. It does not directly measure generalization to entirely unseen individuals, and subject-specific characteristics may contribute to the observed performance.
 
-**2. Subject-wise Evaluation  `8_deep_learning_guassian_class_sub_holdout.ipynb`**
+**2. Subject-wise Evaluation  `8.0_deep_learning_guassian_class_sub_holdout.ipynb`**
 
 The revised experiment separates participants before constructing the training, validation, and test datasets:
 
@@ -119,7 +119,7 @@ The reported test accuracy is **47%**, compared with a nominal chance level of 2
 * The cross-subject result is preliminary evidence of performance above nominal chance level, not by itself proof of statistically significant or physiologically interpretable generalization. Further validation across additional participants and repeated subject-wise splits is needed.
 
 
-### Nested LOSO Evaluation `8.2_nested_loso.ipynb`
+### Nested LOSO Evaluation `8.1_nested_loso.ipynb`
 
 EEGNet was evaluated on nine held-out participants using a nested leave-one-subject-out protocol, with subject-wise inner cross-validation for hyperparameter selection.
 
