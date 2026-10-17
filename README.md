@@ -156,7 +156,7 @@ Examineed the impact of frequency-band selection. Extended the evaluation toward
 * **Language:** Python
 * **Neuro-Signal Processing:** `MNE-Python`
 * **Machine Learning:** `Scikit-learn` (CSP + LDA Pipeline)
-* **Deep Learning:** `TensorFlow/Keras` (EEGNet Architecture)
+* **Deep Learning:** `TensorFlow/Keras` (EEGNet Architecture) `Braindecode`
 * **Real-Time Data Streaming:** `PyLSL` (Lab Streaming Layer)
 * **Deployment and UI:** `Streamlit` (Cloud Hosting and Dashboarding)
 * **Visualization:** `Matplotlib`, `Seaborn`, `Plotly`
