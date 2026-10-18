@@ -138,7 +138,7 @@ This protocol evaluates generalization to held-out participants. However, becaus
 
 Training-only Gaussian noise augmentation was evaluated for EEGNet and AttentionBaseNet.
 
-The augmentation adds Gaussian noise with standard deviation \(\sigma = 0.05\) to training data. The aim is to improve robustness and reduce overfitting.
+The augmentation adds Gaussian noise with standard deviation (sigma = 0.05) to training data. The aim is to improve robustness and reduce overfitting.
 
 Across the reported experiments, augmented and non-augmented models showed very similar aggregate performance, with differences small relative to the variability across subjects.
 
