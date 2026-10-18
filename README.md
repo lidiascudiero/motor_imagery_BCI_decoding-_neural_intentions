@@ -32,7 +32,7 @@ The dataset supports both multiclass motor imagery decoding and binary classific
 >
 > Leveraging my background in Cognitive Neuroscience, I approached EEG decoding not simply as a classification problem on stochastic time series, but as an opportunity to investigate the relationship between neural dynamics and algorithmic predictions.
 >
-> The project explores whether sensorimotor signatures associated with motor imagery—particularly **mu/beta event-related desynchronization (ERD)**—can support reliable digital commands through a systematic decoding pipeline.
+> The project explores whether sensorimotor signatures associated with motor imagery particularly **mu/beta event-related desynchronization (ERD)**can support reliable digital commands through a systematic decoding pipeline.
 >
 > Beyond classification accuracy, I inspected CSP spatial patterns and scalp topographies to assess their qualitative consistency with established sensorimotor physiology, including regions around C3 and C4 commonly associated with hand motor imagery.
 >
