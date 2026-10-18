@@ -1,0 +1,131 @@
+{
+  "experiment_mode": "full",
+  "cfg_hash": "b9a8e7bf09f96cb6",
+  "cfg": {
+    "experiment_mode": "full",
+    "ica_source_E": "own_calibration",
+    "clean_base_dir": "cleaned_data_1_40_runwise",
+    "clean_suffix": "_runwise_clean_1_40_raw.fif",
+    "pipeline_version": "runwise_calibration_ica_v3",
+    "out_root": "./results_cross_session",
+    "fs": 250,
+    "expected_ch_names": [
+      "Fz",
+      "FC3",
+      "FC1",
+      "FCz",
+      "FC2",
+      "FC4",
+      "C5",
+      "C3",
+      "C1",
+      "Cz",
+      "C2",
+      "C4",
+      "C6",
+      "CP3",
+      "CP1",
+      "CPz",
+      "CP2",
+      "CP4",
+      "P1",
+      "Pz",
+      "P2",
+      "POz"
+    ],
+    "eog_names": [
+      "EOG-left",
+      "EOG-central",
+      "EOG-right"
+    ],
+    "class_names": [
+      "left hand",
+      "right hand",
+      "feet",
+      "tongue"
+    ],
+    "bci_code_to_label": {
+      "1": 0,
+      "2": 1,
+      "3": 2,
+      "4": 3
+    },
+    "mi_start_after_cue_s": 0.5,
+    "mi_end_after_cue_s": 3.5,
+    "band_hz": [
+      1.0,
+      40.0
+    ],
+    "normalization": "baseline_pre_cue",
+    "baseline_start_s": -1.0,
+    "baseline_end_s": 0.0,
+    "train_runs": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "val_runs": [
+      5
+    ],
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "max_epochs": 100,
+    "patience": 15,
+    "dropout": 0.5,
+    "aug_sigma": 0.05,
+    "aug_prob": 0.5,
+    "seeds": [
+      0
+    ],
+    "conditions": [
+      "NoAug",
+      "Aug"
+    ],
+    "subjects": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "resume": true,
+    "n_samples": 751,
+    "n_channels": 22,
+    "clean_dir": "cleaned_data_1_40_runwise\\own_calibration"
+  },
+  "subjects_run": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "seeds": [
+    0
+  ],
+  "conditions": [
+    "NoAug",
+    "Aug"
+  ],
+  "versions": {
+    "python": "3.12.7",
+    "numpy": "2.2.5",
+    "scipy": "1.15.3",
+    "pandas": "2.3.0",
+    "mne": "1.12.0",
+    "sklearn": "1.7.2",
+    "tensorflow": "2.20.0",
+    "keras": "3.12.0"
+  },
+  "frozen_at_utc": "2026-10-17T20:31:30+00:00"
+}

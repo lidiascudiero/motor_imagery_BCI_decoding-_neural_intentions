@@ -1,0 +1,19 @@
+subject,session,n_trials,n_kept,n_excluded,n_artifact_flagged,label_source
+1,E,288,288,0,7,true_labels file
+1,T,288,288,0,15,cue events 769-772 (verified against true_labels)
+2,E,288,288,0,5,true_labels file
+2,T,288,288,0,18,cue events 769-772 (verified against true_labels)
+3,E,288,288,0,15,true_labels file
+3,T,288,288,0,18,cue events 769-772 (verified against true_labels)
+4,E,288,288,0,60,true_labels file
+4,T,288,288,0,26,cue events 769-772 (verified against true_labels)
+5,E,288,288,0,12,true_labels file
+5,T,288,288,0,26,cue events 769-772 (verified against true_labels)
+6,E,288,288,0,73,true_labels file
+6,T,288,288,0,69,cue events 769-772 (verified against true_labels)
+7,E,288,288,0,11,true_labels file
+7,T,288,288,0,17,cue events 769-772 (verified against true_labels)
+8,E,288,288,0,17,true_labels file
+8,T,288,288,0,24,cue events 769-772 (verified against true_labels)
+9,E,288,288,0,24,true_labels file
+9,T,288,288,0,51,cue events 769-772 (verified against true_labels)
