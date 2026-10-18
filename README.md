@@ -1,21 +1,5 @@
 #  Motor Imagery BCI: Decoding Neural Intentions
 
-##  Tech Stack
-
-* **Language:** Python
-* **Neuro-Signal Processing:** `MNE-Python`
-* **Machine Learning:** `Scikit-learn` (CSP + LDA pipeline)
-* **Deep Learning:** `TensorFlow/Keras` (EEGNet architecture) `Braindecode` , `pyRiemann`
-* **Real-Time Data Streaming:** `PyLSL` (Lab Streaming Layer)
-* **Deployment and UI:** `Streamlit` (cloud hpsting and dashboarding)
-* **Visualization:** `Matplotlib`, `Seaborn`, `Plotly`
-
-
-
-
-
-# Motor Imagery EEG Decoding: Deep Learning, CSP and Riemannian Geometry
-
 ## Overview
 
 This project explores motor imagery (MI) EEG decoding using classical machine learning, deep learning, and Riemannian geometry. It investigates both **cross-subject generalization** and **within-subject cross-session robustness** using the BCI Competition IV 2a dataset.
@@ -337,3 +321,13 @@ Gaussian noise augmentation with \(\sigma = 0.05\) did not yield a clear aggrega
 
 Overall, the repository provides an experimental framework for studying motor imagery EEG decoding under multiple generalization settings rather than a single, directly comparable leaderboard of model performance.
 
+
+##  Tech Stack
+
+* **Language:** Python
+* **Neuro-Signal Processing:** `MNE-Python`
+* **Machine Learning:** `Scikit-learn` (CSP + LDA pipeline),`pyRiemann` (Riemannian geometry)
+* **Deep Learning:** `TensorFlow/Keras` (EEGNet architecture), `Braindecode` (AttentionBaseNet)
+* **Real-Time Data Streaming:** `PyLSL` (Lab Streaming Layer)
+* **Deployment and UI:** `Streamlit` (cloud hpsting and dashboarding)
+* **Visualization:** `Matplotlib`, `Seaborn`, `Plotly`
