@@ -246,65 +246,6 @@ The following table summarizes the main experiments. Results should be interpret
 
 **Important:** these experiments differ in task, split strategy, training data, adaptation assumptions, and evaluation metrics. They should not be ranked as if they were measured under a single benchmark protocol.
 
-## Technology Stack
-
-### Programming and Data Analysis
-
-- **Python** — main programming language.
-- **NumPy** — numerical computation and array manipulation.
-- **Pandas** — tabular data processing.
-- **SciPy** — signal processing and statistical utilities.
-
-### EEG Processing and Classical Machine Learning
-
-- **MNE-Python** — EEG data loading, preprocessing, epoching, filtering, and signal analysis.
-- **scikit-learn** — LDA, logistic regression, preprocessing, model selection, and evaluation metrics.
-- **pyRiemann** — covariance-based classification, Riemannian geometry, tangent-space representations, and related domain-alignment workflows.
-
-### Deep Learning
-
-- **TensorFlow / Keras** — EEGNet implementation and neural network training.
-- **PyTorch** — tensor computation and neural network development.
-- **Braindecode** — EEG-focused deep learning utilities and model components, used in the AttentionBaseNet workflow.
-
-### Visualization and Applications
-
-- **Matplotlib** and **Seaborn** — scientific plots and statistical visualizations.
-- **Plotly** — interactive visualizations.
-- **Streamlit** — interactive EEG decoding demonstrations.
-- **PyLSL** — Lab Streaming Layer integration for real-time or streaming EEG workflows.
-
-## Reproducibility and Evaluation Considerations
-
-For reproducible and scientifically interpretable comparisons:
-
-1. Record the exact participant IDs assigned to training, validation, and test sets.
-2. Report the number of trials per split and per class.
-3. Fit normalization, feature extraction, and other learned preprocessing steps using training data only, unless the experiment explicitly studies adaptation.
-4. Keep test labels out of model selection and threshold tuning.
-5. Report whether target-session data are used for unsupervised calibration, ICA estimation, covariance alignment, or tangent-space updating.
-6. Distinguish subject-wise generalization from cross-session generalization.
-7. Report per-subject metrics alongside mean and standard deviation.
-8. Compare augmentation conditions using paired per-subject results and, where appropriate, repeated-seed experiments.
-9. Document random seeds, software versions, and exact evaluation scripts.
-10. Avoid direct comparisons between results obtained with different tasks, metrics, or data-splitting protocols.
-
-## Repository Structure
-
-The repository contains notebooks and scripts for exploratory analysis, preprocessing, classical decoding, deep learning, cross-subject evaluation, cross-session experiments, and demonstrations.
-
-Representative components include:
-
-- `exploratory_analysis.ipynb` — exploratory data analysis.
-- `preprocessing_signal_cleaned.ipynb` — EEG preprocessing.
-- `mi_decoding_CSP_LDA_.ipynb` — CSP + LDA decoding.
-- `bci_simulation.ipynb` — BCI simulation workflow.
-- `bci_demo.py` — demonstration script.
-- `5.deep_learning_guassian_class.ipynb` — pooled trial-level deep learning experiment.
-- `8_deep_learning_guassian_class_sub_holdout.ipynb` — subject-wise holdout experiment.
-- `8.2_nested_loso.ipynb` — EEGNet LOSO evaluation.
-- `cross_session_eegnet.ipynb` — cross-session EEGNet experiment.
-
 
 ## Conclusion
 
