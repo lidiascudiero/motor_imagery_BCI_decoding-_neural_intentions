@@ -26,7 +26,7 @@ The experiments use the **BCI Competition IV Dataset 2a**, which contains EEG re
 
 The dataset supports both multiclass motor imagery decoding and binary classification experiments.
 
-## Neurophysiological Motivation: From EEG Signals to Motor Intentions
+## Neurophysiological Motivation: from EEG signals to motor intentions
 
 > **Author's note**
 >
