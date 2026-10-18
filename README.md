@@ -151,6 +151,8 @@ The evaluation uses a nested subject-wise protocol: the outer test participant i
 
 Examineed the impact of frequency-band selection. Extended the evaluation toward cross-session generalization to investigate robustness to changes in EEG recording conditions.
 
+ Within-subject cross-session decoding on BCI Competition IV-2a. One EEGNet per participant, trained from scratch on session 1 (runs 0–4), validated on session 1 (run 5), tested once on session 2. Preprocessing: offline run-wise minimum-phase 1–40 Hz FIR filter, ICA fitted on the EOG-calibration runs only and then frozen, pre-cue baseline normalisation; offline evaluation. Compared with and without on-the-fly Gaussian augmentation (σ = 0.05 baseline-SD units, p = 0.5) under identical splits, seeds and training budget. 
+
 ##  Tech Stack
 
 * **Language:** Python
