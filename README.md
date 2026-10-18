@@ -251,7 +251,7 @@ The following table summarizes the main experiments. Results should be interpret
 
 This project compares classical spatial filtering, compact neural networks, attention-based architectures, and Riemannian covariance methods for motor imagery EEG decoding.
 
-![Paired balanced accuracy per participant](images/paired_balanced_accuracy_per_participant.png)
+![Paired balanced accuracy per participant](images/paired_balanced_accuracy.png)
 
 The experiments highlight three main challenges:
 
