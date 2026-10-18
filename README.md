@@ -305,7 +305,6 @@ Representative components include:
 - `8.2_nested_loso.ipynb` — EEGNet LOSO evaluation.
 - `cross_session_eegnet.ipynb` — cross-session EEGNet experiment.
 
-Exact filenames and the availability of additional Riemannian or interpretability notebooks should be checked against the current repository.
 
 ## Conclusion
 
