@@ -258,7 +258,7 @@ The experiments highlight three main challenges:
 2. **Session variability:** within-subject performance can degrade or vary substantially across separate recording sessions.
 3. **Adaptation assumptions:** unsupervised target alignment can improve Riemannian results, but it requires target data and must be evaluated separately from strictly inductive generalization.
 
-Gaussian noise augmentation with \(\sigma = 0.05\) did not yield a clear aggregate improvement in the reported experiments. The results also motivate further investigation into subject adaptation, robust evaluation protocols, and physiologically informed model interpretation.
+Gaussian noise augmentation with (sigma = 0.05) did not yield a clear aggregate improvement in the reported experiments. The results also motivate further investigation into subject adaptation, robust evaluation protocols, and physiologically informed model interpretation.
 
 Overall, the repository provides an experimental framework for studying motor imagery EEG decoding under multiple generalization settings rather than a single, directly comparable leaderboard of model performance.
 
@@ -270,5 +270,5 @@ Overall, the repository provides an experimental framework for studying motor im
 * **Machine Learning:** `Scikit-learn` (CSP + LDA pipeline),`pyRiemann` (Riemannian geometry)
 * **Deep Learning:** `TensorFlow/Keras` (EEGNet architecture), `Braindecode` (AttentionBaseNet)
 * **Real-Time Data Streaming:** `PyLSL` (Lab Streaming Layer)
-* **Deployment and UI:** `Streamlit` (cloud hpsting and dashboarding)
+* **Deployment and UI:** `Streamlit` (cloud hosting and dashboarding)
 * **Visualization:** `Matplotlib`, `Seaborn`, `Plotly`
