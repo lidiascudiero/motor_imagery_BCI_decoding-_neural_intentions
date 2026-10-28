@@ -1,274 +1,100 @@
-#  Motor Imagery BCI: Decoding Neural Intentions
+# Motor Imagery BCI: decoding  neural intentions across people and sessions
 
-## Overview
+EEG motor-imagery decoding with **CSP–LDA, EEGNet, attention-based networks and Riemannian geometry**, using BCI Competition IV Dataset 2a. The project investigates two tasks: **binary left/right-hand classification** and **four-class decoding** of left hand, right hand, both feet and tongue imagery.
 
-This project explores motor imagery (MI) EEG decoding using classical machine learning, deep learning, and Riemannian geometry. It investigates both **cross-subject generalization** and **within-subject cross-session robustness** using the BCI Competition IV 2a dataset.
+The central question is how decoding changes when the participant or recording session changes—not simply which experiment has the highest score.
 
-The pipeline includes signal preprocessing, feature extraction, model selection, data augmentation, subject-wise validation, cross-session evaluation, and post-hoc model interpretability.
+## At a glance
 
-The main objectives are to:
+- **Unseen participants:** four-class EEGNet reached **55.3% mean balanced accuracy** under nested LOSO across nine participants.
+- **A new session of the same participant:** EEGNet reached **56.1% mean balanced accuracy**, with considerable participant variability.
+- **Augmentation:** Gaussian noise at the tested setting produced no clear average improvement in either experiment.
+- **Interpretability:** removing 8–12 Hz content impaired cross-session decoding more than the specified control bands in **four of nine participants**. General dependence on beta activity or specific reliance on C3/Cz/C4 was not established.
 
-- Compare classical CSP-based decoding with neural network approaches.
-- Evaluate generalization to unseen participants using subject-wise splits and Leave-One-Subject-Out (LOSO) validation.
-- Investigate Gaussian noise augmentation as a potential regularization strategy.
-- Assess covariance-based Riemannian classifiers and unsupervised target-subject adaptation.
-- Evaluate EEGNet robustness across recording sessions.
-- Investigate whether model predictions are consistent with established sensorimotor EEG patterns.
+These are offline, exploratory evaluations on an existing dataset. They do not establish a prospective online BCI, clinical validity or an independent external validation.
 
-## Dataset
+## A cognitive neuroscience perspective
 
-The experiments use the **BCI Competition IV Dataset 2a**, which contains EEG recordings from nine participants performing four motor imagery tasks:
+My background in **Cognitive Neuroscience** shaped the distinction between decoding performance and physiological interpretation. I inspect spatial patterns, frequency sensitivity and ERD/ERS to investigate whether predictions are compatible with sensorimotor EEG activity, while keeping model reliance separate from neural source localization.
 
-- Left hand
-- Right hand
-- Both feet
-- Tongue
+Scalp topographies and perturbation effects provide descriptive evidence; they do not prove that a decoder has isolated a particular cortical generator.
 
-The dataset supports both multiclass motor imagery decoding and binary classification experiments.
+## Evaluation design
 
-## Neurophysiological Motivation: from EEG signals to motor intentions
-
-> **Author's note**
->
-> Leveraging my background in Cognitive Neuroscience, I approached EEG decoding not simply as a classification problem on stochastic time series, but as an opportunity to investigate the relationship between neural dynamics and algorithmic predictions.
->
-> The project explores whether sensorimotor signatures associated with motor imagery particularly mu/beta event-related desynchronization (ERD) can support reliable digital commands through a systematic decoding pipeline.
->
-> Beyond classification accuracy, I inspected CSP spatial patterns and scalp topographies to assess their qualitative consistency with established sensorimotor physiology, including regions around C3 and C4 commonly associated with hand motor imagery.
->
-> These visualizations provide evidence of **physiological plausibility**, not proof of cortical source localization. Scalp EEG topographies are affected by volume conduction and do not uniquely identify neural generators without dedicated source-reconstruction methods.
->
-> This perspective informed the investigation of filtering, artifact mitigation, spatial feature extraction, and model evaluation, with the aim of assessing whether decoding performance was consistent with task-relevant sensorimotor activity rather than relying primarily on noise, artifacts, or dataset-specific correlations.
-
-## Interactive BCI Demonstrations
-
-Two Streamlit applications demonstrate the decoding pipeline through interactive simulations of EEG-based motor imagery classification.
-
-### Binary Motor Imagery Decoding
-
-**Task:** Left-hand vs. right-hand motor imagery.
-
-**Architecture:** Common Spatial Patterns (CSP) + Linear Discriminant Analysis (LDA).
-
-[**Launch the Binary BCI Dashboard**](https://lidiascudiero-demo-2-class-bci.hf.space)
-
-Features include:
-
-- **Window-by-window decoding simulation:** observe the classification process across EEG epochs.
-- **Performance evaluation:** the reported aggregated test accuracy is approximately 77%. A separate summary reports a mean within-subject accuracy of 65.7% ± 8.4% across nine participants.
-- **Class-wise metrics:** the reported balanced accuracy is 0.769, with F1-scores of 0.767 for left-hand imagery and 0.771 for right-hand imagery.
-- **CSP topographies:** inspect spatial patterns and their qualitative relationship with sensorimotor scalp regions.
-- **Mu/beta filtering:** explore the effect of 8–30 Hz band-pass filtering on the EEG signal.
-
-The reported class-wise metrics are similar, suggesting broadly comparable performance for the two classes in that evaluation. They do not, by themselves, establish that the model is unbiased across participants or recording conditions.
-
-### Four-Class Motor Imagery Decoding
-
-**Task:** Left hand, right hand, both feet, and tongue imagery.
-
-**Architecture:** EEGNet, a compact convolutional neural network for EEG decoding.
-
-[**Launch the Multi-Class BCI Dashboard**](https://lidiascudiero-demo-4-class-bci.hf.space)
-
-Features include:
-
-- **EEGNet inference:** generate predictions using a pretrained four-class model.
-- **Reported performance:** 63.4% accuracy in the demonstrated setup, compared with a nominal four-class chance level of 25%.
-- **Class probability visualization:** inspect the model's predicted probability distribution across the four motor imagery classes.
-- **LSL streaming simulation:** connect to a simulated Lab Streaming Layer (LSL) stream with automatic exit conditions to demonstrate the flow of an EEG decoding session.
-
-The 63.4% result describes the specific demo evaluation and should not be directly compared with the LOSO or cross-session results without matching the evaluation protocols.
-
-### Demo Data and Implementation Notes
-
-Both demonstrations use preprocessed `.fif` recordings from participant A07, session `T`, to focus on the decoding workflow and user-interface feedback.
-
-The binary and multiclass applications use separate preprocessing pipelines:
-
-| Component | Binary demo | Multiclass demo |
+| Setting | What is held out? | What does it assess? |
 |---|---|---|
-| Task | Left vs. right hand | Left hand, right hand, feet, tongue |
-| Classifier | CSP + LDA | EEGNet |
-| Reported frequency range | 8–30 Hz | 1–40 Hz |
-| Input data | Preprocessed `.fif` recordings | Preprocessed `.fif` recordings |
-| Application | Streamlit | Streamlit |
+| Within-subject binary CSP–LDA | Trials from the same participant | New trials from a represented participant |
+| Fixed subject holdout | Two participants | Transfer to that particular unseen pair |
+| Nested LOSO EEGNet | One participant at a time, with grouped inner validation | Transfer across nine participants |
+| Cross-session EEGNet | Session E; training/validation use T of the same participant | Session transfer within a represented person |
+| Transductive Riemannian adaptation | Target labels, but not all target signals | Transfer with explicitly available unlabeled target data |
 
-Each application has its own preprocessing configuration and environment requirements. The demonstrations illustrate the inference workflow; they should not be interpreted as evidence of a fully validated, online BCI operating on newly acquired EEG unless that capability is separately evaluated.
+These settings answer different questions and are **not a single leaderboard**. The nominal uniform chance level is 50% for the binary task and 25% for the four-class task; these are reference levels, not significance tests.
 
+## Headline results
 
-## Experimental Pipeline
+Values below are means ± **between-participant standard deviations**, not confidence intervals.
 
-### 1. Classical Baseline: CSP + LDA
+| Experiment | Condition | Balanced accuracy | Macro F1 |
+|---|---|---:|---:|
+| EEGNet nested LOSO | NoAug | **55.3% ± 9.0%** | 0.540 ± 0.097 |
+| EEGNet nested LOSO | Gaussian augmentation | 55.3% ± 8.5% | 0.542 ± 0.088 |
+| EEGNet cross-session | NoAug | **56.1% ± 13.6%** | 0.557 ± 0.136 |
+| EEGNet cross-session | Gaussian augmentation | 56.1% ± 13.4% | 0.557 ± 0.133 |
 
-Common Spatial Patterns (CSP) and Linear Discriminant Analysis (LDA) provide a classical baseline for motor imagery classification.
+Nested LOSO uses nine outer test participants and three-fold participant-grouped inner validation. Cross-session evaluation trains on session-T runs 0–4, selects checkpoints on run 5 and tests on session E. Its default preprocessing uses each session's unlabeled EOG-calibration recordings for ICA; it is not transfer without test-session calibration.
 
-CSP extracts spatial filters that emphasize differences in class-specific signal variance, while LDA performs the final classification.
+Gaussian noise uses σ = 0.05 and a 0.5 application probability in these experiments, on their respective normalized inputs. Similar rounded averages do not establish equivalence or imply that augmentation never helps.
 
-Reported results include:
+![Cross-session confusion matrices without and with augmentation](docs/figures/cross_session_metrics.png)
 
-- **Mean within-subject accuracy:** 65.7% ± 8.4% across nine participants.
-- **Separate reported test result:** approximately 77% aggregated accuracy, with a reported top-performing subject result of 77.9%.
+*Saved output from notebook 11.1. Each matrix contains 2,592 test trials across nine participants. Pooled confusion matrices and participant-mean metrics are different summaries.*
 
-These figures refer to different reported summaries and should not be interpreted as the same evaluation metric or protocol. Exact split definitions and aggregation details should be documented before making direct comparisons with other models.
+Additional experiments include **65.7% ± 8.4% within-subject binary accuracy**, a fixed-pair EEGNet holdout result of **47.0% accuracy**, and Riemannian baselines near **26–28% balanced accuracy**, rising to approximately **31–34%** with the tested target-adaptation methods. These results remain specific to their preprocessing and evaluation assumptions. [Detailed methods and results](docs/METHODS_AND_RESULTS.md)
 
-### 2. Initial Cross-Subject Deep Learning Experiments
+## What the models use
 
-Initial experiments compared two neural architectures:
+The cross-session interpretation notebook loads frozen checkpoints and checks their predictions against the saved experiment before performing:
 
-- **EEGNet**, a compact convolutional neural network designed for EEG decoding.
-- **AttentionBaseNet**, a CNN incorporating channel-attention mechanisms, including Squeeze-and-Excitation modules.
+- Mu, beta and combined-band removal, with control-frequency perturbations.
+- Channel occlusion, anatomical controls and equal-size random channel subsets.
+- Descriptive ERD/ERS analysis, separately from model sensitivity.
+- Class-specific confusion analysis.
 
-A fixed subject-wise split was used:
+The strongest spectral result is **participant-dependent reliance on mu-band content**, rather than a general demonstration that EEGNet decodes motor-cortex mu/beta rhythms. Band removal also changes the input distribution, and its effects cannot be interpreted as causal brain mechanisms. A variance-preserving variant was added post hoc and is reported separately.
 
-- 5 subjects for training
-- 2 subjects for validation
-- 2 subjects for testing
+## Offline demonstrations
 
-Grid search for AttentionBaseNet identified the following configuration:
+- [Binary interface simulation](https://lidiascudiero-demo-2-class-bci.hf.space): illustrates trial playback and CSP visualization. In the supplied script, arrows follow recorded labels and confidence values are simulated; this is **not classifier inference**.
+- [Four-class replay application](https://lidiascudiero-demo-4-class-bci.hf.space): the supplied implementation loads EEGNet and performs inference on a simulated LSL stream of preprocessed A07T data. This demonstrates software integration, not prospective online or unseen-person validation.
 
-| Hyperparameter | Selected value |
-|---|---:|
-| Learning rate | 0.001 |
-| Dropout | 0.5 |
-| Batch size | 32 |
+The descriptions above refer to the supplied code; hosted deployments can differ. Replay performance is not substituted for the benchmark results.
 
-This protocol evaluates generalization to held-out participants. However, because the test set contains only two subjects, the result may be sensitive to which participants are assigned to the test set.
+## Reproducing the analyses
 
-### 3. Gaussian Noise Augmentation
+Download the data separately from the [official competition distribution](https://www.bbci.de/competition/iv/download/) or [BNCI dataset catalogue](https://bnci-horizon-2020.eu/database/data-sets). Dataset 2a contains nine participants, two sessions, 22 EEG and three EOG channels. Follow the original data terms and citation requirements.
 
-Training-only Gaussian noise augmentation was evaluated for EEGNet and AttentionBaseNet.
+Choose the experiment branch before execution: historical notebooks use MATLAB/session-T inputs; the revised cross-session branch uses GDF files, evaluation labels and calibration provenance. Directory and file conventions are defined in each notebook; there is no single shared configuration covering all experiments.
 
-The augmentation adds Gaussian noise with standard deviation (sigma = 0.05) to training data. The aim is to improve robustness and reduce overfitting.
+See the [notebook guide](docs/NOTEBOOK_GUIDE.md) for execution dependencies and the [publication review notes](docs/PUBLICATION_REVIEW.md) for limitations identified from the supplied files. Results were checked against embedded notebook outputs; the complete training workflows were not rerun for this documentation update.
 
-Across the reported experiments, augmented and non-augmented models showed very similar aggregate performance, with differences small relative to the variability across subjects.
+**Stack:** MNE-Python, NumPy, SciPy, pandas, scikit-learn, TensorFlow/Keras, PyTorch/Braindecode, pyRiemann, Matplotlib, Streamlit and PyLSL.
 
-In the nested LOSO EEGNet experiment:
+## Limitations
 
-| Metric | NoAug | Aug |
-|---|---:|---:|
-| Accuracy | 55.3% ± 9.0% | 55.3% ± 8.5% |
-| Balanced accuracy | 55.3% ± 9.0% | 55.3% ± 8.5% |
-| Macro-F1 | 54.0% ± 9.7% | 54.2% ± 8.8% |
-| Cohen's kappa | 0.404 ± 0.120 | 0.404 ± 0.113 |
+- Nine participants from one dataset, limited training-seed replication and substantial individual variability.
+- Historical and revised preprocessing differ; early whole-recording ICA does not establish strict inductive preprocessing.
+- Earlier channel naming and CSP input channels require audit before physiological claims or a standardized rerun.
+- Offline filtering, trial structure and normalization are not evidence of streaming equivalence.
+- Interpretability is exploratory; channel mixtures, perturbation-induced distribution shift and residual artifacts constrain conclusions.
+- No prospective acquisition, closed-loop user study, assistive-device validation or clinical evaluation was performed.
 
-The results do not demonstrate a meaningful average improvement from this augmentation setting. Small differences between individual subjects may reflect optimization variability or subject-specific effects. Establishing equivalence would require a dedicated statistical analysis and an appropriately defined equivalence margin.
+## References and acknowledgements
 
-### 4. Cross-Subject Evaluation: Leave-One-Subject-Out (LOSO)
+This is an independent analysis. Data collection and original methods belong to their respective authors.
 
-To evaluate generalization across participants more systematically, the pipeline includes a nine-fold LOSO evaluation.
+- **Brunner, C., Leeb, R., Müller-Putz, G. R., Schlögl, A., & Pfurtscheller, G.** BCI Competition 2008—Graz data set A. [Official Dataset 2a description](https://www.bbci.de/competition/iv/desc_2a.pdf).
+- **Tangermann, M., et al. (2012).** Review of the BCI Competition IV. *Frontiers in Neuroscience*, 6, 55. [Paper](https://doi.org/10.3389/fnins.2012.00055).
+- **Lawhern, V. J., et al. (2018).** EEGNet: a compact convolutional neural network for EEG-based brain-computer interfaces. *Journal of Neural Engineering*, 15, 056013. [Paper](https://doi.org/10.1088/1741-2552/aace8c).
 
-In each outer fold, one participant is held out for testing while the remaining participants are used for training and model selection according to the experiment's validation protocol.
-
-This evaluation is more informative about unseen-subject generalization than a random trial-level split in which trials from the same participant can appear in both training and testing.
-
-The nested LOSO EEGNet results reported above indicate that four-class decoding across unseen participants remains challenging, with substantial differences in performance across subjects.
-
-**Protocol note:** the exact validation procedure should be described per experiment. A fixed validation subject in each outer fold is not equivalent to a full inner cross-validation loop, even when both use an outer LOSO test split.
-
-### 5. Riemannian Geometry Baselines
-
-Covariance-based Riemannian methods were evaluated as an alternative to conventional feature extraction and deep learning.
-
-The pipeline includes:
-
-- **MDM (Minimum Distance to Mean):** classifies samples according to their Riemannian distance from class covariance means.
-- **Tangent-space logistic regression:** maps covariance matrices to a tangent space and applies logistic regression.
-- **Riemannian Alignment (RA):** aligns covariance representations across subjects.
-- **Tangent-space updating (`tsupdate`):** updates the target-domain tangent-space reference using target data.
-
-Under inductive LOSO evaluation, MDM and tangent-space logistic regression with `none` and `zscore` normalization achieved balanced accuracy of approximately **0.26–0.28**, close to the four-class chance level of 0.25.
-
-Transductive adaptation improved reported balanced accuracy to approximately **0.31–0.34** using RA-full, RA-calib48, and tangent-space updating.
-
-These findings suggest that covariance-based methods may benefit from target-subject alignment when inter-subject variability is substantial. However, the adapted results should not be directly compared with strictly inductive results without clearly identifying the target data used during adaptation.
-
-**Evaluation distinction:**
-
-- **Inductive LOSO:** the held-out subject is not used to adapt the model or reference representation.
-- **Transductive adaptation:** unlabeled target-subject data may be used to estimate alignment or update a representation.
-- **Supervised adaptation:** uses target-subject labels and must be reported separately.
-
-Transductive adaptation does not necessarily involve label leakage, but it changes the assumptions about target data availability and deployment.
-
-### 6. Within-Subject Cross-Session Generalization with EEGNet
-
-A separate experiment investigates temporal robustness by training and validating on one recording session and testing on a distinct session for the same participant.
-
-**Protocol**
-
-- Training: session `T`, runs 0–4.
-- Validation and early stopping: session `T`, run 5.
-- Testing: session `E`.
-- Preprocessing: run-wise 1–40 Hz minimum-phase filtering and pre-cue baseline normalization over −1.0 to 0 seconds relative to the cue.
-- ICA: calibration-only estimation, as documented for this experiment.
-
-The purpose is to measure whether a model trained on one session can decode motor imagery in a separate session without using the test session's labels for model fitting.
-
-**Reported results across nine participants**
-
-| Metric | NoAug | Aug |
-|---|---:|---:|
-| Balanced accuracy | 56.1% ± 13.4% | 56.1% ± 13.4% |
-| Macro-F1 | 55.7% ± 13.6% | 55.7% ± 13.3% |
-| Cohen's kappa | 0.415 ± 0.182 | 0.415 ± 0.178 |
-
-The reported cross-session results indicate moderate decoding performance with considerable inter-subject variability. Gaussian augmentation did not produce a clear aggregate improvement.
-
-*Reporting note:* the experiment summary reports balanced accuracy of 56.1% ± 13.4% for both conditions. Confirm the saved result tables before publication if the underlying notebook contains a different standard deviation for either condition.
-
-### 7. Model Interpretability
-
-Post-hoc interpretability analyses were performed on frozen cross-session EEGNet checkpoints.
-
-The analyses include:
-
-- **Frequency-band perturbation:** evaluating changes in predictions after removing mu, beta, or combined mu and beta activity.
-- **Channel occlusion:** investigating how predictions change when individual EEG channels are masked or perturbed.
-- **Class confusion analysis:** identifying which motor imagery classes are most frequently confused.
-
-These methods can help assess whether model predictions are sensitive to physiologically relevant sensorimotor rhythms and scalp channels.
-
-Interpretation must remain cautious: perturbation-based analyses describe model sensitivity under a particular intervention, not causal brain mechanisms or definitive neural source localization.
-
-## Results Summary
-
-The following table summarizes the main experiments. Results should be interpreted within their respective evaluation protocols.
-
-| Experiment | Evaluation protocol | Reported result | Main observation |
-|---|---|---|---|
-| CSP + LDA | Within-subject binary decoding; exact split to document | 65.7% ± 8.4% mean accuracy; separate reported result around 77% | Classical baseline; summaries require protocol clarification |
-| Pooled deep learning | Random 80/20 trial split across pooled subjects | Approximately 63% accuracy | Trials from the same subjects can appear in train and test |
-| Subject-wise deep learning | 5 training, 2 validation, 2 test subjects | Approximately 47% test accuracy | Evaluates held-out subjects, but only two test subjects |
-| EEGNet nested LOSO | Nine outer subject folds | 55.3% mean accuracy without and with augmentation | More systematic assessment of unseen-subject generalization |
-| Riemannian, inductive LOSO | Held-out subject without target adaptation | Approximately 0.26–0.28 balanced accuracy | Close to four-class chance level |
-| Riemannian, transductive adaptation | Target covariance alignment or tangent-space updating | Approximately 0.31–0.34 balanced accuracy | Adaptation improves the reported results under different assumptions |
-| EEGNet cross-session | Train/validate on session T, test on session E | 56.1% balanced accuracy; 55.7% Macro-F1 | Moderate within-subject cross-session performance |
-
-**Important:** these experiments differ in task, split strategy, training data, adaptation assumptions, and evaluation metrics. They should not be ranked as if they were measured under a single benchmark protocol.
-
-
-## Conclusion
-
-This project compares classical spatial filtering, compact neural networks, attention-based architectures, and Riemannian covariance methods for motor imagery EEG decoding.
-
-![Paired balanced accuracy per participant](paired_balanced_accuracy.png)
-The experiments highlight three main challenges:
-
-1. **Inter-subject variability:** performance on unseen participants remains difficult, even when using deep learning.
-2. **Session variability:** within-subject performance can degrade or vary substantially across separate recording sessions.
-3. **Adaptation assumptions:** unsupervised target alignment can improve Riemannian results, but it requires target data and must be evaluated separately from strictly inductive generalization.
-
-Gaussian noise augmentation with (sigma = 0.05) did not yield a clear aggregate improvement in the reported experiments. The results also motivate further investigation into subject adaptation, robust evaluation protocols, and physiologically informed model interpretation.
-
-Overall, the repository provides an experimental framework for studying motor imagery EEG decoding under multiple generalization settings rather than a single, directly comparable leaderboard of model performance.
-
-
-##  Tech Stack
-
-* **Language:** Python
-* **Neuro-Signal Processing:** `MNE-Python`
-* **Machine Learning:** `Scikit-learn` (CSP + LDA pipeline),`pyRiemann` (Riemannian geometry)
-* **Deep Learning:** `TensorFlow/Keras` (EEGNet architecture), `Braindecode` (AttentionBaseNet)
-* **Real-Time Data Streaming:** `PyLSL` (Lab Streaming Layer)
-* **Deployment and UI:** `Streamlit` (cloud hosting and dashboarding)
-* **Visualization:** `Matplotlib`, `Seaborn`, `Plotly`
+The implemented models and protocols are not claimed to reproduce the original competition or architecture-paper benchmarks exactly.
