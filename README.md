@@ -63,7 +63,7 @@ The cross-session interpretation notebook loads frozen checkpoints and checks th
 
 The strongest spectral result is **participant-dependent reliance on mu-band content**, rather than a general demonstration that EEGNet decodes motor-cortex mu/beta rhythms. Band removal also changes the input distribution, and its effects cannot be interpreted as causal brain mechanisms. A variance-preserving variant was added post hoc and is reported separately.
 
-## Offline demonstrations
+## Offline demonstrations STREAMLIT DEMOS
 
 - [Binary interface simulation](https://lidiascudiero-demo-2-class-bci.hf.space): illustrates trial playback and CSP visualization. In the supplied script, arrows follow recorded labels and confidence values are simulated; this is **not classifier inference**.
 - [Four-class replay application](https://lidiascudiero-demo-4-class-bci.hf.space): the supplied implementation loads EEGNet and performs inference on a simulated LSL stream of preprocessed A07T data. This demonstrates software integration, not prospective online or unseen-person validation.
