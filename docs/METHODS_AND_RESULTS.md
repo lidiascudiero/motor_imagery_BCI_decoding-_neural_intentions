@@ -2,7 +2,7 @@
 
 This document separates reported experiments by task, evaluation unit and preprocessing. 
 
-## 1. Binary CSP–LDA: resolving the 77% versus 65.7% figures
+## 1. Binary CSP–LDA
 
 Notebook `03_mi_decoding_CSP_LDA_.ipynb` evaluates left versus right imagery with ten stratified ShuffleSplit iterations per participant, using an 80/20 training/test split. CSP and LDA are in a scikit-learn pipeline, so CSP is fitted separately inside each training split.
 
