@@ -76,15 +76,13 @@ Download the data separately from the [official competition distribution](https:
 
 Choose the experiment branch before execution: historical notebooks use MATLAB/session-T inputs; the revised cross-session branch uses GDF files, evaluation labels and calibration provenance. Directory and file conventions are defined in each notebook; there is no single shared configuration covering all experiments.
 
-See the [notebook guide](docs/NOTEBOOK_GUIDE.md) for execution dependencies and the [publication review notes](docs/PUBLICATION_REVIEW.md) for limitations identified from the supplied files. Results were checked against embedded notebook outputs; the complete training workflows were not rerun for this documentation update.
+See the [notebook guide](docs/NOTEBOOK_GUIDE.md) for execution dependencies.
 
 **Stack:** MNE-Python, NumPy, SciPy, pandas, scikit-learn, TensorFlow/Keras, PyTorch/Braindecode, pyRiemann, Matplotlib, Streamlit and PyLSL.
 
 ## Limitations
 
 - Nine participants from one dataset, limited training-seed replication and substantial individual variability.
-- Historical and revised preprocessing differ; early whole-recording ICA does not establish strict inductive preprocessing.
-- Earlier channel naming and CSP input channels require audit before physiological claims or a standardized rerun.
 - Offline filtering, trial structure and normalization are not evidence of streaming equivalence.
 - Interpretability is exploratory; channel mixtures, perturbation-induced distribution shift and residual artifacts constrain conclusions.
 - No prospective acquisition, closed-loop user study, assistive-device validation or clinical evaluation was performed.
