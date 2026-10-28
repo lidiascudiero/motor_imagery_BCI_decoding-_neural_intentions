@@ -93,7 +93,7 @@ See the [notebook guide](docs/NOTEBOOK_GUIDE.md) for execution dependencies and 
 
 This is an independent analysis. Data collection and original methods belong to their respective authors.
 
-- **Brunner, C., Leeb, R., Müller-Putz, G. R., Schlögl, A., & Pfurtscheller, G.** BCI Competition 2008—Graz data set A. [Official Dataset 2a description](https://www.bbci.de/competition/iv/desc_2a.pdf).
+- **Brunner, C., Leeb, R., Müller-Putz, G. R., Schlögl, A., & Pfurtscheller, G.** BCI Competition 2008 Graz data set A. [Official Dataset 2a description](https://www.bbci.de/competition/iv/desc_2a.pdf).
 - **Tangermann, M., et al. (2012).** Review of the BCI Competition IV. *Frontiers in Neuroscience*, 6, 55. [Paper](https://doi.org/10.3389/fnins.2012.00055).
 - **Lawhern, V. J., et al. (2018).** EEGNet: a compact convolutional neural network for EEG-based brain-computer interfaces. *Journal of Neural Engineering*, 15, 056013. [Paper](https://doi.org/10.1088/1741-2552/aace8c).
 
