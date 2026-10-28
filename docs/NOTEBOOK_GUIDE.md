@@ -1,6 +1,6 @@
 # Notebook guide
 
-Filenames below match the supplied files. Duplicate downloads with `(1)` suffixes are not separate experiments. Branches have different input conventions and are not a single sequential benchmark.
+Filenames below match the supplied files. Branches have different input conventions and are not a single sequential benchmark.
 
 | Notebook | Purpose |
 |---|---|
