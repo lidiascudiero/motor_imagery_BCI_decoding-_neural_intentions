@@ -2,7 +2,7 @@
 
 EEG motor-imagery decoding with **CSP–LDA, EEGNet, attention-based networks and Riemannian geometry**, using BCI Competition IV Dataset 2a. The project investigates two tasks: **binary left/right-hand classification** and **four-class decoding** of left hand, right hand, both feet and tongue imagery.
 
-The central question is how decoding changes when the participant or recording session changes—not simply which experiment has the highest score.
+The central question is how decoding changes when the participant or recording session changes, not simply which experiment has the highest score.
 
 ## At a glance
 
